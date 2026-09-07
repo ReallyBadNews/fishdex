@@ -1,4 +1,4 @@
-import { baits, type SpeciesId } from "./catalog.ts";
+import { baits, speciesIds, type SpeciesId } from "./catalog.ts";
 export type Profile = { id: string; name: string; color: string; bait: string };
 export type Coordinates = {
   latitude: number;
@@ -92,7 +92,7 @@ export function badges(j: Journal, profileId: string) {
   );
   return [
     { name: "First catch", earned: catches.length > 0, icon: "☀" },
-    { name: "Lake explorer", earned: discovered.size === 3, icon: "✦" },
+    { name: "Lake explorer", earned: discovered.size >= 3, icon: "✦" },
     { name: "Personal best", earned: record, icon: "⚑" },
   ];
 }
@@ -168,7 +168,7 @@ export function validateJournal(value: unknown): Journal {
       !object(c) ||
       !id(c.id) ||
       !profiles.has(c.profileId) ||
-      !["bluegill", "bass", "pike", "unknown"].includes(c.speciesId) ||
+      !speciesIds.has(c.speciesId) ||
       !str(c.date, 60) ||
       !Number.isFinite(Date.parse(c.date)) ||
       !baits.includes(c.bait as any) ||
