@@ -45,3 +45,11 @@ example
 # Blender backup copies
 *.blend1
 *.blend2
+
+# Runtime models are already embedded in src/generated/models.ts
+assets/models/
+scripts/modeling/
+docs/
+.agents/
+.codex/
+.claude/

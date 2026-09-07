@@ -1,0 +1,19 @@
+name: Fishdex iPhone preview
+on:
+  push:
+    branches: ["main"]
+jobs:
+  check:
+    name: Check the field journal
+    steps:
+      - uses: eas/checkout
+      - uses: eas/install_node_modules
+      - run: npm run typecheck
+      - run: npm test
+  build_ios:
+    name: Build the private iPhone preview
+    needs: [check]
+    type: build
+    params:
+      platform: ios
+      profile: preview

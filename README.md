@@ -1,56 +1,47 @@
-# Welcome to your Expo app 👋
+# Fishdex
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A private, offline-first Expo SDK 57 iPhone fishing journal for a family. Separate editable local anglers share named fishing spots. Bluegill, largemouth bass, and northern pike unlock after a confirmed catch. Includes original Blender fish and tackle models, camera/library photos, optional GPS, journal editing, read-aloud field notes, backup/restore with photos, and location-free catch cards.
 
-## Get started
+## Run and validate
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```sh
+npm ci
+npm run typecheck
+npm test
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+The iPhone app is the product. The web target is a UI preview with separate local data; camera persistence, backup, and maps need the native app. No Xcode installation is available on the current development machine, so native installation is through EAS.
 
-### Other setup steps
+## Installable previews
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```sh
+eas build --platform ios --profile preview
+```
 
-## Learn more
+The preview is an internally distributed release build with a bundled JavaScript payload and models. It does not need Metro at the lake. The project uses the owner's personal Apple team and Expo project configured in app.json. Signing must be configured in EAS; target iPhones must be registered using `eas device:create` before building.
 
-To learn more about developing your project with Expo, look at the following resources:
+`.eas/workflows/preview.yml` validates code and builds an iPhone preview on pushes to main when the Expo GitHub integration is connected. It can also run manually:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```sh
+eas workflow:run .eas/workflows/preview.yml
+```
 
-## Join the community
+`.github/workflows/check.yml` checks every PR, including iOS bundle export. TestFlight later uses the `testflight` build and submit profiles; no public App Store release is configured.
 
-Join our community of developers creating universal apps.
+## What this field edition does and does not do
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Camera view takes a photo; users choose the species by comparing field marks. **Automatic live/photo species recognition is not implemented or validated.** No fake predictions, confidence scores, or remote inference requests.
+- Weight guides require a manually entered length. Bluegill and pike use Wisconsin DNR length formulas; bass uses standard-weight coefficients from Ohio OFIS Appendix 4.2. These are rough references, not photo measurements, statistical confidence ranges, or eligible weight records.
+- Unknown sex is hidden. Known sex can be entered manually.
+- Original 3D models are species-specific initial representations with body markings and fins. They require further anatomical and artistic refinement before being described as highly accurate or photorealistic. No AR yet.
+- Catch data and photos are stored locally. Map imagery can need internet. Offline GPS acquisition depends on device conditions. Photos imported from the library require date confirmation and do not get the current GPS location automatically.
+- Backups include private coordinates and photos; share cards intentionally omit location and notes, and are rasterized rather than sharing original photo metadata. Uninstalling deletes local data: export a backup first.
+
+## Assets and sources
+
+`assets/models/fishdex-source.blend` contains original generated Blender scenes. `scripts/modeling/` contains editable model-generation scripts. `assets/models/*.glb` are runtime exports; `assets/specimens/` holds rendered previews. `npm run models:bundle` embeds GLBs and the Three.js viewer for offline use. No external model hosting or CDN is used. Third-party renderer licenses remain in `src/generated/viewer.ts` and `node_modules/three/LICENSE`.
+
+Fish facts and field marks: Michigan DNR [bluegill](https://www.michigan.gov/dnr/education/michigan-species/fish-species/bluegill), [largemouth bass](https://www.michigan.gov/dnr/education/michigan-species/fish-species/largemouth), [northern pike](https://www.michigan.gov/dnr/education/michigan-species/fish-species/pike). DNR illustrations are not bundled. Weight sources: [Wisconsin DNR](https://dnr.wisconsin.gov/topic/Fishing/questions/estfishweight), [Ohio OFIS Appendix 4.2](https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/35/NPSMP/docs/OFIS.pdf).
+
+Accepted product decisions and remaining delivery gates: [docs/SCOPE.md](docs/SCOPE.md).
