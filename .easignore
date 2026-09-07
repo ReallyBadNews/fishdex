@@ -48,6 +48,7 @@ example
 
 # Runtime models are already embedded in src/generated/models.ts
 assets/models/
+assets/blender/
 scripts/modeling/
 docs/
 .agents/

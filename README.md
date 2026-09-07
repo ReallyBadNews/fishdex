@@ -40,7 +40,7 @@ eas workflow:run .eas/workflows/preview.yml
 
 ## Assets and sources
 
-`assets/models/fishdex-source.blend` contains original generated Blender scenes. `scripts/modeling/` contains editable model-generation scripts. `assets/models/*.glb` are runtime exports; `assets/specimens/` holds rendered previews. `npm run models:bundle` embeds GLBs and the Three.js viewer for offline use. No external model hosting or CDN is used. Third-party renderer licenses remain in `src/generated/viewer.ts` and `node_modules/three/LICENSE`.
+`assets/models/fishdex-source.blend` preserves all earlier Blender scenes. [The source archive](assets/blender/README.md) contains editable version 3 scenes and a verified inventory. `scripts/modeling/` contains editable model-generation scripts. `assets/models/*.glb` are runtime exports; `assets/specimens/` holds rendered previews. `npm run models:bundle` embeds GLBs and the Three.js viewer for offline use. No external model hosting or CDN is used. Third-party renderer licenses remain in `src/generated/viewer.ts` and `node_modules/three/LICENSE`.
 
 The full roster, field-mark references, and modeling scope are in [docs/CATALOG.md](docs/CATALOG.md). Facts use Michigan DNR and Missouri Department of Conservation field guides. Agency illustrations are not bundled. Weight sources: [Wisconsin DNR](https://dnr.wisconsin.gov/topic/Fishing/questions/estfishweight), [Ohio OFIS Appendix 4.2](https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/35/NPSMP/docs/OFIS.pdf).
 

@@ -1,0 +1,235 @@
+{
+  "archive": "assets/models/fishdex-source.blend",
+  "blender": "5.2.1 LTS",
+  "scenes": [
+    {
+      "name": "Fishdex app emblem",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex bass",
+      "objects": 124
+    },
+    {
+      "name": "Fishdex bass.001",
+      "objects": 124
+    },
+    {
+      "name": "Fishdex bluegill",
+      "objects": 128
+    },
+    {
+      "name": "Fishdex bluegill.001",
+      "objects": 128
+    },
+    {
+      "name": "Fishdex bluegill.002",
+      "objects": 128
+    },
+    {
+      "name": "Fishdex crankbait",
+      "objects": 17
+    },
+    {
+      "name": "Fishdex frog",
+      "objects": 15
+    },
+    {
+      "name": "Fishdex jig",
+      "objects": 31
+    },
+    {
+      "name": "Fishdex minnow",
+      "objects": 20
+    },
+    {
+      "name": "Fishdex pike",
+      "objects": 111
+    },
+    {
+      "name": "Fishdex pike.001",
+      "objects": 111
+    },
+    {
+      "name": "Fishdex soft-plastic",
+      "objects": 60
+    },
+    {
+      "name": "Fishdex spinner",
+      "objects": 11
+    },
+    {
+      "name": "Fishdex v2 bass",
+      "objects": 157
+    },
+    {
+      "name": "Fishdex v2 bass.001",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 black-bullhead",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 black-crappie",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 bluegill",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 brook-trout",
+      "objects": 141
+    },
+    {
+      "name": "Fishdex v2 brook-trout.001",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 brown-bullhead",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 channel-catfish",
+      "objects": 133
+    },
+    {
+      "name": "Fishdex v2 channel-catfish.001",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 crankbait",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 crankbait.001",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 crankbait.002",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 flathead-catfish",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 frog",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 green-sunfish",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 jerkbait",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 jerkbait.001",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 jerkbait.002",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 jig",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 lake-trout",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 minnow",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 muskie",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 pike",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 popper",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 popper.001",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 pumpkinseed",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 rock-bass",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 smallmouth",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 soft-plastic",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 spinner",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 spinner.001",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 spinnerbait",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 spoon",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 walleye",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 white-bass",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 white-crappie",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 worm",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 yellow-bullhead",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 yellow-perch",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex v2 yellow-perch.001",
+      "objects": 5
+    },
+    {
+      "name": "Fishdex worm",
+      "objects": 60
+    },
+    {
+      "name": "Scene",
+      "objects": 3
+    }
+  ],
+  "sha256": "3751cbee37deb96c11c7d8f9c89f20198347f7106c0fd24e4bc4422046b0ad08"
+}

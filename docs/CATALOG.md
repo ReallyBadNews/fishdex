@@ -35,6 +35,12 @@ No agency illustrations or photographs are bundled. Text is paraphrased; all mod
 
 Worm, Minnow, Jig, Spinner, Crankbait, Soft plastic, Topwater frog, Spoon, Spinnerbait, Jerkbait, Topwater popper. Other and Not recorded are journal choices without invented generic models. Each modeled type appears in the bait selector and tackle box. Models are unbranded examples; hook, skirt, paint, and hardware choices vary by real lure.
 
+## Realism pass and archives
+
+The third pass adds irregular pigment patterns, tangent-space scale relief, radial iris detail, cheek relief, thinner tapered fin rays, and wet-skin materials. Lures use coated paint, polished metal, and translucent diving lips. The viewer generates its reflection environment locally, without an HDR download.
+
+All earlier scenes are preserved in the original source library. Version 3 keeps separate editable and runtime scenes with packed textures. See [the archive index](../assets/blender/README.md) for opening and reusing them. Render comparisons are in [model-review](model-review/index.html).
+
 ## Rebuild
 
-In Blender, execute build_fish.py, build_tackle.py, build_sportfish.py, and build_sporttackle.py into one namespace. Call build_sportfish(id) or build_sporttackle(id), then save the current generated scenes to assets/models/fishdex-source.blend. Run npm run models:bundle to update the embedded runtime assets.
+In Blender, execute build_fish.py, build_tackle.py, build_sportfish.py, and build_sporttackle.py into one namespace. For the current models, load build_realistic.py afterward and call build_realistic(id). Each asset saves its editable source in assets/blender/v3; keep the earlier master library intact. Run npm run models:bundle to update the embedded runtime assets.
