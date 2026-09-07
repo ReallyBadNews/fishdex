@@ -5,7 +5,6 @@ import {
   Pressable,
   TextInput,
   StyleSheet,
-  Modal,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
@@ -141,71 +140,78 @@ export function Sheet({
   children,
   onClose,
   scroll = true,
+  footer,
 }: {
   title: string;
   children: ReactNode;
   onClose: () => void;
   scroll?: boolean;
+  footer?: ReactNode;
 }) {
   return (
-    <Modal
-      visible
-      animationType="slide"
-      presentationStyle="fullScreen"
-      onRequestClose={onClose}
-    >
-      <SafeAreaView style={{ flex: 1, backgroundColor: C.paper }}>
-        <View
-          style={[
-            s.row,
-            {
-              paddingHorizontal: 22,
-              paddingVertical: 12,
-              borderBottomWidth: 1,
-              borderColor: C.line,
-            },
-          ]}
+    <SafeAreaView style={{ flex: 1, backgroundColor: C.paper }}>
+      <View
+        style={[
+          s.row,
+          {
+            paddingHorizontal: 22,
+            paddingVertical: 12,
+            borderBottomWidth: 1,
+            borderColor: C.line,
+          },
+        ]}
+      >
+        <Text
+          style={{
+            flex: 1,
+            fontFamily: "Georgia",
+            fontSize: 23,
+            color: C.forest,
+          }}
         >
-          <Text
-            style={{
-              flex: 1,
-              fontFamily: "Georgia",
-              fontSize: 23,
-              color: C.forest,
+          {title}
+        </Text>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Close"
+          onPress={onClose}
+          style={{ padding: 12 }}
+        >
+          <Text style={{ fontSize: 18, color: C.forest }}>Close</Text>
+        </Pressable>
+      </View>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+      >
+        {scroll ? (
+          <ScrollView
+            keyboardShouldPersistTaps="handled"
+            contentContainerStyle={{
+              padding: 22,
+              gap: 20,
+              paddingBottom: 40,
             }}
           >
-            {title}
-          </Text>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Close"
-            onPress={onClose}
-            style={{ padding: 12 }}
+            {children}
+          </ScrollView>
+        ) : (
+          children
+        )}
+        {footer && (
+          <View
+            style={{
+              padding: 16,
+              borderTopWidth: 1,
+              borderColor: C.line,
+              backgroundColor: C.paper,
+            }}
           >
-            <Text style={{ fontSize: 18, color: C.forest }}>Close</Text>
-          </Pressable>
-        </View>
-        <KeyboardAvoidingView
-          style={{ flex: 1 }}
-          behavior={Platform.OS === "ios" ? "padding" : undefined}
-        >
-          {scroll ? (
-            <ScrollView
-              keyboardShouldPersistTaps="handled"
-              contentContainerStyle={{
-                padding: 22,
-                gap: 20,
-                paddingBottom: 40,
-              }}
-            >
-              {children}
-            </ScrollView>
-          ) : (
-            children
-          )}
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    </Modal>
+            {footer}
+          </View>
+        )}
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 }
 export const s = StyleSheet.create({
