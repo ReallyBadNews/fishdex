@@ -6,12 +6,12 @@ Private iPhone field journal for Dad, Mason, and Nolan. Initial install target i
 
 - Local profiles with add, rename, switch, and remove; separate catches, species unlocks, and personal records. Shared named fishing spots and private coordinates.
 - Camera/photo-library capture followed by species confirmation. “Caught it!” saves immediately; optional details afterward. Unidentified catches must remain saveable.
-- Bluegill, largemouth bass, northern pike first. Michigan inland species expand later.
+- Common Michigan inland sport fish first: 20 native species in the current [catalog](CATALOG.md), expanded from bluegill, largemouth bass, and northern pike. The wider minnow/darter/sucker catalog is deferred.
 - Silhouette collection; first confirmed catch unlocks a species with a reveal. Repeat catches build the journal. First-catch, species, and personal-best badges, without XP or levels.
 - Forest/river field-journal design inspired by nature exploration; realistic species models, rotate/zoom. AR deferred.
 - Short educational facts and optional read-aloud.
 - Automatic current capture time and optional GPS; imported photos require the catch date/location to be supplied or confirmed. Remember bait by profile. Optional length, measured weight, sex, nickname, notes, release/keep status.
-- Worm, minnow, jig, spinner, crankbait, soft plastic, topwater frog, Other, Not recorded. 3D tackle previews and a select control.
+- Worm, minnow, jig, spinner, crankbait, soft plastic, topwater frog, spoon, spinnerbait, jerkbait, topwater popper, Other, Not recorded. 3D tackle previews and a select control.
 - Local durable data/photos, portable backup including photos, import validation, and location-free rendered catch cards.
 - Prefer on-device recognition; no pretend AI results. Uncertain/manual selection always available. Photo-only weight estimation is experimental; never present a species' typical weight as a measured catch weight. Hide unknown sex.
 
@@ -30,4 +30,4 @@ Palette: forest #183F35, reed #B7CA9D, paper #F4F2E8, lake #527D8A, ink #223B34,
 - https://www.michigan.gov/dnr/education/michigan-species/fish-species/largemouth
 - https://www.michigan.gov/dnr/education/michigan-species/fish-species/pike
 
-Species summaries and model anatomy use DNR facts. DNR illustrations are copyrighted and are not bundled or used as textures.
+Species summaries and model anatomy use state wildlife agency field guides linked in the catalog. DNR illustrations are copyrighted and are not bundled or used as textures.

@@ -66,11 +66,7 @@ import {
   s,
 } from "@/components/journal-ui";
 
-const pictures: Record<string, number> = {
-  bluegill: require("../../assets/specimens/bluegill.png"),
-  bass: require("../../assets/specimens/bass.png"),
-  pike: require("../../assets/specimens/pike.png"),
-};
+import { specimenImages as pictures } from "@/data/specimen-images";
 const dateLabel = (date: string) =>
   new Date(date).toLocaleDateString(undefined, {
     month: "short",
@@ -165,6 +161,8 @@ export default function Fishdex() {
   );
   const [ready, setReady] = useState(false);
   const [filter, setFilter] = useState("all");
+  const [guideSearch, setGuideSearch] = useState("");
+  const [fishSearch, setFishSearch] = useState("");
   const [toast, setToast] = useState("");
   const saveLock = useRef(false);
   useEffect(() => {
@@ -220,6 +218,7 @@ export default function Fishdex() {
     }
   };
   function startScan() {
+    setFishSearch("");
     setDraft(undefined);
     setReady(false);
     gps.current = Promise.resolve(undefined);
@@ -464,7 +463,7 @@ export default function Fishdex() {
                   <Text
                     style={{ color: "#E1EBD8", fontSize: 14, marginTop: 5 }}
                   >
-                    Three species. So many stories ahead.
+                    {species.length} species. So many stories ahead.
                   </Text>
                 </View>
               </View>
@@ -473,7 +472,10 @@ export default function Fishdex() {
             <View style={styles.stats}>
               {[
                 { value: catches.length, label: "Catches" },
-                { value: `${discovered.size} / 3`, label: "Discovered" },
+                {
+                  value: `${discovered.size} / ${species.length}`,
+                  label: "Discovered",
+                },
                 {
                   value: badges(journal, profile.id).filter((b) => b.earned)
                     .length,
@@ -532,41 +534,56 @@ export default function Fishdex() {
               <View
                 style={[
                   styles.progressFill,
-                  { width: `${(discovered.size / 3) * 100}%` },
+                  { width: `${(discovered.size / species.length) * 100}%` },
                 ]}
               />
             </View>
             <Text style={s.small}>
-              {discovered.size} of 3 species discovered
+              {discovered.size} of {species.length} species discovered
             </Text>
-            {species.map((f) => {
-              const unlocked = discovered.has(f.id);
-              return (
-                <Pressable
-                  accessibilityRole="button"
-                  accessibilityLabel={`${f.name}, ${unlocked ? "discovered" : "not caught yet"}`}
-                  key={f.id}
-                  style={[
-                    styles.specimen,
-                    { backgroundColor: unlocked ? f.color + "44" : "#E6E9DD" },
-                  ]}
-                  onPress={() => setOverlay({ kind: "fish", id: f.id })}
-                >
-                  <View style={[s.row, { justifyContent: "space-between" }]}>
-                    <Text style={{ color: C.forest, fontWeight: "600" }}>
-                      {unlocked ? "✦ Discovered" : "◇ Still out there"}
-                    </Text>
-                    <Text style={s.small}>
-                      {catches.filter((c) => c.speciesId === f.id).length}{" "}
-                      caught
-                    </Text>
-                  </View>
-                  {fishImage(f.id, !unlocked, 155)}
-                  <Text style={s.sectionTitle}>{f.name}</Text>
-                  <Text style={s.small}>{f.title}</Text>
-                </Pressable>
-              );
-            })}
+            <Field
+              label="Find a fish"
+              value={guideSearch}
+              onChangeText={setGuideSearch}
+              placeholder="Bass, perch, trout…"
+              autoCorrect={false}
+            />
+            {species
+              .filter((f) =>
+                `${f.name} ${f.scientific}`
+                  .toLowerCase()
+                  .includes(guideSearch.trim().toLowerCase()),
+              )
+              .map((f) => {
+                const unlocked = discovered.has(f.id);
+                return (
+                  <Pressable
+                    accessibilityRole="button"
+                    accessibilityLabel={`${f.name}, ${unlocked ? "discovered" : "not caught yet"}`}
+                    key={f.id}
+                    style={[
+                      styles.specimen,
+                      {
+                        backgroundColor: unlocked ? f.color + "44" : "#E6E9DD",
+                      },
+                    ]}
+                    onPress={() => setOverlay({ kind: "fish", id: f.id })}
+                  >
+                    <View style={[s.row, { justifyContent: "space-between" }]}>
+                      <Text style={{ color: C.forest, fontWeight: "600" }}>
+                        {unlocked ? "✦ Discovered" : "◇ Still out there"}
+                      </Text>
+                      <Text style={s.small}>
+                        {catches.filter((c) => c.speciesId === f.id).length}{" "}
+                        caught
+                      </Text>
+                    </View>
+                    {fishImage(f.id, !unlocked, 155)}
+                    <Text style={s.sectionTitle}>{f.name}</Text>
+                    <Text style={s.small}>{f.title}</Text>
+                  </Pressable>
+                );
+              })}
             <Text style={s.sectionTitle}>Field badges</Text>
             <View style={styles.badges}>
               {badges(journal, profile.id).map((b) => (
@@ -715,7 +732,11 @@ export default function Fishdex() {
                   onPress={() => setOverlay({ kind: "tackle", id, name })}
                   style={styles.tackle}
                 >
-                  <Text style={{ fontSize: 18, color: C.forest }}>⌁</Text>
+                  <Image
+                    source={pictures[id]}
+                    resizeMode="contain"
+                    style={{ width: "100%", height: 72 }}
+                  />
                   <Text style={{ fontSize: 15, color: C.ink }}>{name}</Text>
                   <Text style={s.small}>Inspect in 3D</Text>
                 </Pressable>
@@ -751,7 +772,7 @@ export default function Fishdex() {
               length for a rough weight guide. Unknown sex stays hidden.
             </Copy>
             <Copy muted>
-              Fish facts: Michigan DNR. Original 3D models made in Blender.
+              Fish facts: state wildlife agency field guides. Original 3D models made in Blender.
               Models are field-guide representations and are being refined.
             </Copy>
             <Pressable
@@ -1027,31 +1048,44 @@ export default function Fishdex() {
               }))}
               onChange={(profileId) => setDraft({ ...draft, profileId })}
             />
-            {species.map((f) => (
-              <Pressable
-                accessibilityRole="button"
-                accessibilityState={{ selected: draft.speciesId === f.id }}
-                key={f.id}
-                style={[
-                  styles.fishChoice,
-                  draft.speciesId === f.id && styles.selected,
-                ]}
-                onPress={() => setDraft({ ...draft, speciesId: f.id })}
-              >
-                <Image
-                  source={pictures[f.id]}
-                  resizeMode="contain"
-                  style={{ width: 100, height: 72 }}
-                />
-                <View style={{ flex: 1, gap: 5 }}>
-                  <Text style={styles.rowTitle}>
-                    {f.name}
-                    {draft.speciesId === f.id ? " ✓" : ""}
-                  </Text>
-                  <Text style={s.small}>{f.clues}</Text>
-                </View>
-              </Pressable>
-            ))}
+            <Field
+              label="Find your fish"
+              value={fishSearch}
+              onChangeText={setFishSearch}
+              placeholder="Bass, bluegill, catfish…"
+              autoCorrect={false}
+            />
+            {species
+              .filter((f) =>
+                `${f.name} ${f.scientific}`
+                  .toLowerCase()
+                  .includes(fishSearch.trim().toLowerCase()),
+              )
+              .map((f) => (
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: draft.speciesId === f.id }}
+                  key={f.id}
+                  style={[
+                    styles.fishChoice,
+                    draft.speciesId === f.id && styles.selected,
+                  ]}
+                  onPress={() => setDraft({ ...draft, speciesId: f.id })}
+                >
+                  <Image
+                    source={pictures[f.id]}
+                    resizeMode="contain"
+                    style={{ width: 100, height: 72 }}
+                  />
+                  <View style={{ flex: 1, gap: 5 }}>
+                    <Text style={styles.rowTitle}>
+                      {f.name}
+                      {draft.speciesId === f.id ? " ✓" : ""}
+                    </Text>
+                    <Text style={s.small}>{f.clues}</Text>
+                  </View>
+                </Pressable>
+              ))}
             <Button
               secondary
               label={
@@ -1173,9 +1207,11 @@ export default function Fishdex() {
                       });
                     }}
                   />
-                  <Text style={s.small}>
-                    Field notes adapted from Michigan DNR.
-                  </Text>
+                  <Button
+                    secondary
+                    label="Read the agency field guide"
+                    onPress={() => void Linking.openURL(f.source)}
+                  />
                   <Button label="Log a catch" onPress={startScan} />
                 </>
               );

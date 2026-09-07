@@ -103,3 +103,23 @@ test("length-based guides use documented units and reject unsupported lengths", 
   assert.equal(weightGuide("bass", 3), undefined);
   assert.equal(weightGuide("bluegill", NaN), undefined);
 });
+
+test("expanded catalog catches survive persistence and keep the three-species explorer badge", async () => {
+  const { species, baits } = await import("../src/data/catalog.ts");
+  const j = initialJournal();
+  j.catches = species.map((fish, i) => ({
+    ...catchOne,
+    id: `expanded-${i}`,
+    speciesId: fish.id,
+    bait: baits[i % baits.length],
+  }));
+  assert.deepEqual(validateJournal(JSON.parse(JSON.stringify(j))), j);
+  assert.equal(
+    badges(j, catchOne.profileId).find((b) => b.name === "Lake explorer")
+      ?.earned,
+    true,
+  );
+  j.catches[0].speciesId =
+    "nonexistent-species" as (typeof j.catches)[0]["speciesId"];
+  assert.throws(() => validateJournal(j));
+});

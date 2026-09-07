@@ -1,6 +1,6 @@
 # Fishdex
 
-A private, offline-first Expo SDK 57 iPhone fishing journal for a family. Separate editable local anglers share named fishing spots. Bluegill, largemouth bass, and northern pike unlock after a confirmed catch. Includes original Blender fish and tackle models, camera/library photos, optional GPS, journal editing, read-aloud field notes, backup/restore with photos, and location-free catch cards.
+A private, offline-first Expo SDK 57 iPhone fishing journal for a family. Separate editable local anglers share named fishing spots. Twenty Michigan inland sport fish unlock after a confirmed catch. Includes 20 original Blender fish models and 11 bait/lure models, camera/library photos, optional GPS, journal editing, read-aloud field notes, backup/restore with photos, and location-free catch cards.
 
 ## Run and validate
 
@@ -34,7 +34,7 @@ eas workflow:run .eas/workflows/preview.yml
 - Camera view takes a photo; users choose the species by comparing field marks. **Automatic live/photo species recognition is not implemented or validated.** No fake predictions, confidence scores, or remote inference requests.
 - Weight guides require a manually entered length. Bluegill and pike use Wisconsin DNR length formulas; bass uses standard-weight coefficients from Ohio OFIS Appendix 4.2. These are rough references, not photo measurements, statistical confidence ranges, or eligible weight records.
 - Unknown sex is hidden. Known sex can be entered manually.
-- Original 3D models are species-specific initial representations with body markings and fins. They require further anatomical and artistic refinement before being described as highly accurate or photorealistic. No AR yet.
+- Original 3D models have species-specific body shapes, markings, fins, eyes, and barbels where appropriate. They require further anatomical and artistic refinement before being described as highly accurate or photorealistic. No AR yet.
 - Catch data and photos are stored locally. Map imagery can need internet. Offline GPS acquisition depends on device conditions. Photos imported from the library require date confirmation and do not get the current GPS location automatically.
 - Backups include private coordinates and photos; share cards intentionally omit location and notes, and are rasterized rather than sharing original photo metadata. Uninstalling deletes local data: export a backup first.
 
@@ -42,6 +42,6 @@ eas workflow:run .eas/workflows/preview.yml
 
 `assets/models/fishdex-source.blend` contains original generated Blender scenes. `scripts/modeling/` contains editable model-generation scripts. `assets/models/*.glb` are runtime exports; `assets/specimens/` holds rendered previews. `npm run models:bundle` embeds GLBs and the Three.js viewer for offline use. No external model hosting or CDN is used. Third-party renderer licenses remain in `src/generated/viewer.ts` and `node_modules/three/LICENSE`.
 
-Fish facts and field marks: Michigan DNR [bluegill](https://www.michigan.gov/dnr/education/michigan-species/fish-species/bluegill), [largemouth bass](https://www.michigan.gov/dnr/education/michigan-species/fish-species/largemouth), [northern pike](https://www.michigan.gov/dnr/education/michigan-species/fish-species/pike). DNR illustrations are not bundled. Weight sources: [Wisconsin DNR](https://dnr.wisconsin.gov/topic/Fishing/questions/estfishweight), [Ohio OFIS Appendix 4.2](https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/35/NPSMP/docs/OFIS.pdf).
+The full roster, field-mark references, and modeling scope are in [docs/CATALOG.md](docs/CATALOG.md). Facts use Michigan DNR and Missouri Department of Conservation field guides. Agency illustrations are not bundled. Weight sources: [Wisconsin DNR](https://dnr.wisconsin.gov/topic/Fishing/questions/estfishweight), [Ohio OFIS Appendix 4.2](https://dam.assets.ohio.gov/image/upload/epa.ohio.gov/Portals/35/NPSMP/docs/OFIS.pdf).
 
 Accepted product decisions and remaining delivery gates: [docs/SCOPE.md](docs/SCOPE.md).
