@@ -12,6 +12,14 @@ test("every catalog fish and bait has a valid self-contained GLB with no remote 
     assert.equal(buffer.readUInt32LE(8), buffer.length, name);
     const size = buffer.readUInt32LE(12);
     const gltf = JSON.parse(buffer.subarray(20, 20 + size).toString());
+    if (species.some((fish) => fish.id === name)) {
+      assert.ok(
+        gltf.materials.some((material: { normalTexture?: { index: number } }) =>
+          material.normalTexture !== undefined,
+        ),
+        `${name} preserves its skin relief in the runtime export`,
+      );
+    }
     assert.ok(gltf.meshes.length > 0, name);
     assert.ok(
       gltf.meshes.flatMap((m: { primitives: unknown[] }) => m.primitives)

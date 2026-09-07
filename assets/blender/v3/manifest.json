@@ -1,0 +1,338 @@
+{
+  "revision": 3,
+  "blender": "5.2.1 LTS",
+  "scene_count": 83,
+  "files": [
+    {
+      "asset": "bass",
+      "file": "bass.blend",
+      "scenes": [
+        "Fishdex v3 bass",
+        "Fishdex v3 bass editable",
+        "Fishdex v3 bass editable.001",
+        "Fishdex v3 bass runtime",
+        "Fishdex v3 bass runtime.001"
+      ],
+      "bytes": 4710409,
+      "sha256": "acaa8ccf0ebe99aa2592a31fc7e8d6db4b3edd82ce55dcc39f7694c040f7b191"
+    },
+    {
+      "asset": "black-bullhead",
+      "file": "black-bullhead.blend",
+      "scenes": [
+        "Fishdex v3 black-bullhead editable",
+        "Fishdex v3 black-bullhead editable.001",
+        "Fishdex v3 black-bullhead runtime",
+        "Fishdex v3 black-bullhead runtime.001"
+      ],
+      "bytes": 3006838,
+      "sha256": "2ac74a2089d72b0b0cea24f37b7e1f203d238dcf257d101f3ada2934c29ae9c3"
+    },
+    {
+      "asset": "black-crappie",
+      "file": "black-crappie.blend",
+      "scenes": [
+        "Fishdex v3 black-crappie editable",
+        "Fishdex v3 black-crappie runtime"
+      ],
+      "bytes": 2814063,
+      "sha256": "5938a3e43d7eb8f74b8249d7be2097830a3aa5d1d4ff13fa0ca1b7fa7ad451ce"
+    },
+    {
+      "asset": "bluegill",
+      "file": "bluegill.blend",
+      "scenes": [
+        "Fishdex v3 bluegill editable",
+        "Fishdex v3 bluegill editable.001",
+        "Fishdex v3 bluegill runtime",
+        "Fishdex v3 bluegill runtime.001"
+      ],
+      "bytes": 3880689,
+      "sha256": "ed4cabfad30c1e0dc1fc68145459f58be4a7bf13ca20a54e6daf70221578c726"
+    },
+    {
+      "asset": "brook-trout",
+      "file": "brook-trout.blend",
+      "scenes": [
+        "Fishdex v3 brook-trout editable",
+        "Fishdex v3 brook-trout runtime"
+      ],
+      "bytes": 3050873,
+      "sha256": "e5f10cb8560c304372ba35ed8da5c8c1c0821923a6d2f470bc8261402ef74560"
+    },
+    {
+      "asset": "brown-bullhead",
+      "file": "brown-bullhead.blend",
+      "scenes": [
+        "Fishdex v3 brown-bullhead editable",
+        "Fishdex v3 brown-bullhead editable.001",
+        "Fishdex v3 brown-bullhead runtime",
+        "Fishdex v3 brown-bullhead runtime.001"
+      ],
+      "bytes": 3064635,
+      "sha256": "b6ef37a4c6db9b9c507ebc2c1201222d59f2a221e4cc6a486c10c2565cc848b7"
+    },
+    {
+      "asset": "channel-catfish",
+      "file": "channel-catfish.blend",
+      "scenes": [
+        "Fishdex v3 channel-catfish editable",
+        "Fishdex v3 channel-catfish editable.001",
+        "Fishdex v3 channel-catfish runtime",
+        "Fishdex v3 channel-catfish runtime.001"
+      ],
+      "bytes": 3077420,
+      "sha256": "d085d8634deb225f3d05cca71c642bf064d4647af3c1bd907ef9fd2dd3f47451"
+    },
+    {
+      "asset": "crankbait",
+      "file": "crankbait.blend",
+      "scenes": [
+        "Fishdex v3 crankbait editable",
+        "Fishdex v3 crankbait editable.001",
+        "Fishdex v3 crankbait runtime",
+        "Fishdex v3 crankbait runtime.001"
+      ],
+      "bytes": 617961,
+      "sha256": "10ace1c30940769cf1a2aebe8ed631c6cfb39524f421eba867fbc31c84b5a944"
+    },
+    {
+      "asset": "flathead-catfish",
+      "file": "flathead-catfish.blend",
+      "scenes": [
+        "Fishdex v3 flathead-catfish editable",
+        "Fishdex v3 flathead-catfish editable.001",
+        "Fishdex v3 flathead-catfish runtime",
+        "Fishdex v3 flathead-catfish runtime.001"
+      ],
+      "bytes": 3099901,
+      "sha256": "2ec547a79026446baf49ec4e7d7f7c2be94f9598cf8e8096d4d66708b2bb71a1"
+    },
+    {
+      "asset": "frog",
+      "file": "frog.blend",
+      "scenes": [
+        "Fishdex v3 frog editable",
+        "Fishdex v3 frog runtime"
+      ],
+      "bytes": 396312,
+      "sha256": "aded9ed420bc10173b2ef0dec710c977d3e83c2806ef178d747be19a6c3884a1"
+    },
+    {
+      "asset": "green-sunfish",
+      "file": "green-sunfish.blend",
+      "scenes": [
+        "Fishdex v3 green-sunfish editable",
+        "Fishdex v3 green-sunfish runtime"
+      ],
+      "bytes": 2782379,
+      "sha256": "548b6b76ebf3dfe9c15d0451ae3e198a5a2b0473733c66207a9fbb8644049416"
+    },
+    {
+      "asset": "jerkbait",
+      "file": "jerkbait.blend",
+      "scenes": [
+        "Fishdex v3 jerkbait editable",
+        "Fishdex v3 jerkbait runtime"
+      ],
+      "bytes": 389973,
+      "sha256": "23391ac6781b8c9a9eddcc28ff218dd78923d30aa25c78e77ad1b7c9bac1eef2"
+    },
+    {
+      "asset": "jig",
+      "file": "jig.blend",
+      "scenes": [
+        "Fishdex v3 jig editable",
+        "Fishdex v3 jig runtime"
+      ],
+      "bytes": 246346,
+      "sha256": "7ee0b94de8211466836ae6b4314a0b4b1817748aca75e4c04aaaa4ca0dbfe76e"
+    },
+    {
+      "asset": "lake-trout",
+      "file": "lake-trout.blend",
+      "scenes": [
+        "Fishdex v3 lake-trout editable",
+        "Fishdex v3 lake-trout editable.001",
+        "Fishdex v3 lake-trout runtime",
+        "Fishdex v3 lake-trout runtime.001"
+      ],
+      "bytes": 5000247,
+      "sha256": "4c3972af5aa8d05e1f4930d7d70a03129d99735240aa8391de5c50bd1d52e265"
+    },
+    {
+      "asset": "minnow",
+      "file": "minnow.blend",
+      "scenes": [
+        "Fishdex v3 minnow editable",
+        "Fishdex v3 minnow runtime"
+      ],
+      "bytes": 354070,
+      "sha256": "fa171785994d490080cfd8a88e9ecca693d1ca6c158849c3d931e03e487e145f"
+    },
+    {
+      "asset": "muskie",
+      "file": "muskie.blend",
+      "scenes": [
+        "Fishdex v3 muskie editable",
+        "Fishdex v3 muskie runtime"
+      ],
+      "bytes": 2795480,
+      "sha256": "5def00d00272208d59d2cf350f044474ec25cc76ed445d8fc4d77a7e4f10ad0e"
+    },
+    {
+      "asset": "pike",
+      "file": "pike.blend",
+      "scenes": [
+        "Fishdex v3 pike editable",
+        "Fishdex v3 pike runtime"
+      ],
+      "bytes": 2708816,
+      "sha256": "50f8ebd0e55e1f6c6023118c976c4cd9750821615fd5845b7343941fad7e7cba"
+    },
+    {
+      "asset": "popper",
+      "file": "popper.blend",
+      "scenes": [
+        "Fishdex v3 popper editable",
+        "Fishdex v3 popper runtime"
+      ],
+      "bytes": 362459,
+      "sha256": "40afe30e23fd6a173a4915e51f270f54380a929226c711a1140fa8e01bed5bd4"
+    },
+    {
+      "asset": "pumpkinseed",
+      "file": "pumpkinseed.blend",
+      "scenes": [
+        "Fishdex v3 pumpkinseed editable",
+        "Fishdex v3 pumpkinseed runtime"
+      ],
+      "bytes": 2867339,
+      "sha256": "fa979c853dc78ee2a6e775b1a81dbdfe2a4581a2711eafdbdb24effb66f1868e"
+    },
+    {
+      "asset": "rock-bass",
+      "file": "rock-bass.blend",
+      "scenes": [
+        "Fishdex v3 rock-bass editable",
+        "Fishdex v3 rock-bass runtime"
+      ],
+      "bytes": 2695378,
+      "sha256": "b6da6a1baa58ac9cf8abf80d4bb4519b3f2f0f2923c133ab83327ed81ae95f20"
+    },
+    {
+      "asset": "smallmouth",
+      "file": "smallmouth.blend",
+      "scenes": [
+        "Fishdex v3 smallmouth editable",
+        "Fishdex v3 smallmouth runtime"
+      ],
+      "bytes": 2772993,
+      "sha256": "1ae3b9afff0f4c87c55fb76cfae5ba1ffe15e97fec23560edbe489b47241d60d"
+    },
+    {
+      "asset": "soft-plastic",
+      "file": "soft-plastic.blend",
+      "scenes": [
+        "Fishdex v3 soft-plastic editable",
+        "Fishdex v3 soft-plastic runtime"
+      ],
+      "bytes": 603396,
+      "sha256": "3692e8fb7c79eb8d7aef2f0bcad397b8d11918990e3ba77c8348d0e4289a1ee5"
+    },
+    {
+      "asset": "spinner",
+      "file": "spinner.blend",
+      "scenes": [
+        "Fishdex v3 spinner editable",
+        "Fishdex v3 spinner runtime"
+      ],
+      "bytes": 249229,
+      "sha256": "9547c31dfae44ffe24e4ca9d371d786aec1f15d95d3313dd0b8d30bc3f96d29d"
+    },
+    {
+      "asset": "spinnerbait",
+      "file": "spinnerbait.blend",
+      "scenes": [
+        "Fishdex v3 spinnerbait editable",
+        "Fishdex v3 spinnerbait runtime"
+      ],
+      "bytes": 300484,
+      "sha256": "6be36e4f535c560560a1bc4b32a11c57155053edd373ca57d1ea328c3b647642"
+    },
+    {
+      "asset": "spoon",
+      "file": "spoon.blend",
+      "scenes": [
+        "Fishdex v3 spoon editable",
+        "Fishdex v3 spoon runtime"
+      ],
+      "bytes": 190650,
+      "sha256": "7be4526684cba2b2e90c52df2794e6479add29e6e38fc8771d4452e067e764ba"
+    },
+    {
+      "asset": "walleye",
+      "file": "walleye.blend",
+      "scenes": [
+        "Fishdex v3 walleye editable",
+        "Fishdex v3 walleye editable.001",
+        "Fishdex v3 walleye runtime",
+        "Fishdex v3 walleye runtime.001"
+      ],
+      "bytes": 4806389,
+      "sha256": "9ac5eb72265567f828136cadf0e295547a270d81056399a9f1413a2a2034c53c"
+    },
+    {
+      "asset": "white-bass",
+      "file": "white-bass.blend",
+      "scenes": [
+        "Fishdex v3 white-bass editable",
+        "Fishdex v3 white-bass runtime"
+      ],
+      "bytes": 2740369,
+      "sha256": "b5840e6fd5b3a1fcb9ba57b68c7355dd94c164f3604f745dead125f00b5b138e"
+    },
+    {
+      "asset": "white-crappie",
+      "file": "white-crappie.blend",
+      "scenes": [
+        "Fishdex v3 white-crappie editable",
+        "Fishdex v3 white-crappie runtime"
+      ],
+      "bytes": 2819960,
+      "sha256": "f4cbd6c4c935cd01f894cafd25719c03ce18d2218498b294575b7b5d9d4d60cb"
+    },
+    {
+      "asset": "worm",
+      "file": "worm.blend",
+      "scenes": [
+        "Fishdex v3 worm editable",
+        "Fishdex v3 worm runtime"
+      ],
+      "bytes": 379482,
+      "sha256": "f3cab5769003ec87bce246a9112862ccec08b830ea346dd52e655d3211a4d981"
+    },
+    {
+      "asset": "yellow-bullhead",
+      "file": "yellow-bullhead.blend",
+      "scenes": [
+        "Fishdex v3 yellow-bullhead editable",
+        "Fishdex v3 yellow-bullhead editable.001",
+        "Fishdex v3 yellow-bullhead runtime",
+        "Fishdex v3 yellow-bullhead runtime.001"
+      ],
+      "bytes": 2979608,
+      "sha256": "3e0c551d8d70867a2a400b01216e32aa1116bad79a4a79ae8f02a1f19e328a5c"
+    },
+    {
+      "asset": "yellow-perch",
+      "file": "yellow-perch.blend",
+      "scenes": [
+        "Fishdex v3 yellow-perch editable",
+        "Fishdex v3 yellow-perch runtime"
+      ],
+      "bytes": 2848565,
+      "sha256": "c804892092a9d2ea6aa75640c474ea9a42bd07377d1053cb723073aa06518543"
+    }
+  ]
+}
