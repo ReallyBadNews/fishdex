@@ -1,4 +1,5 @@
-import { useState, type ReactNode } from "react";
+import { useCallback, useRef, useState, type ReactNode } from "react";
+import { ModelInteraction } from "./model-interaction";
 import {
   Text,
   View,
@@ -148,70 +149,85 @@ export function Sheet({
   scroll?: boolean;
   footer?: ReactNode;
 }) {
+  const scrollRef = useRef<ScrollView>(null);
+  const owners = useRef(new Set<symbol>());
+  const [interacting, setInteracting] = useState(false);
+  const holdModelGesture = useCallback((owner: symbol, active: boolean) => {
+    if (active) owners.current.add(owner);
+    else owners.current.delete(owner);
+    const locked = owners.current.size > 0;
+    // Apply immediately, before the next React render and native pan movement.
+    scrollRef.current?.setNativeProps({ scrollEnabled: !locked });
+    setInteracting(locked);
+  }, []);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: C.paper }}>
-      <View
-        style={[
-          s.row,
-          {
-            paddingHorizontal: 22,
-            paddingVertical: 12,
-            borderBottomWidth: 1,
-            borderColor: C.line,
-          },
-        ]}
-      >
-        <Text
-          style={{
-            flex: 1,
-            fontFamily: "Georgia",
-            fontSize: 23,
-            color: C.forest,
-          }}
-        >
-          {title}
-        </Text>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Close"
-          onPress={onClose}
-          style={{ padding: 12 }}
-        >
-          <Text style={{ fontSize: 18, color: C.forest }}>Close</Text>
-        </Pressable>
-      </View>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
-        {scroll ? (
-          <ScrollView
-            keyboardShouldPersistTaps="handled"
-            contentContainerStyle={{
-              padding: 22,
-              gap: 20,
-              paddingBottom: 40,
-            }}
-          >
-            {children}
-          </ScrollView>
-        ) : (
-          children
-        )}
-        {footer && (
-          <View
-            style={{
-              padding: 16,
-              borderTopWidth: 1,
+    <ModelInteraction.Provider value={holdModelGesture}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: C.paper }}>
+        <View
+          style={[
+            s.row,
+            {
+              paddingHorizontal: 22,
+              paddingVertical: 12,
+              borderBottomWidth: 1,
               borderColor: C.line,
-              backgroundColor: C.paper,
+            },
+          ]}
+        >
+          <Text
+            style={{
+              flex: 1,
+              fontFamily: "Georgia",
+              fontSize: 23,
+              color: C.forest,
             }}
           >
-            {footer}
-          </View>
-        )}
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+            {title}
+          </Text>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Close"
+            onPress={onClose}
+            style={{ padding: 12 }}
+          >
+            <Text style={{ fontSize: 18, color: C.forest }}>Close</Text>
+          </Pressable>
+        </View>
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+        >
+          {scroll ? (
+            <ScrollView
+              ref={scrollRef}
+              scrollEnabled={!interacting}
+              keyboardShouldPersistTaps="handled"
+              contentContainerStyle={{
+                padding: 22,
+                gap: 20,
+                paddingBottom: 40,
+              }}
+            >
+              {children}
+            </ScrollView>
+          ) : (
+            children
+          )}
+          {footer && (
+            <View
+              style={{
+                padding: 16,
+                borderTopWidth: 1,
+                borderColor: C.line,
+                backgroundColor: C.paper,
+              }}
+            >
+              {footer}
+            </View>
+          )}
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </ModelInteraction.Provider>
   );
 }
 export const s = StyleSheet.create({

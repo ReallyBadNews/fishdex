@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { installInteractionGuards } from "./viewer-interaction.js";
 try {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -23,6 +24,9 @@ try {
   rim.position.set(2, 1, -3);
   scene.add(rim);
   const controls = new OrbitControls(camera, renderer.domElement);
+  installInteractionGuards(renderer.domElement, (message) => {
+    window.ReactNativeWebView?.postMessage(message);
+  });
   controls.enablePan = false;
   controls.minDistance = 1.5;
   controls.maxDistance = 7;
