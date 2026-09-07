@@ -141,6 +141,7 @@ type Overlay =
   | { kind: "profile"; id?: string }
   | { kind: "scan" }
   | { kind: "confirm" }
+  | { kind: "catchDate" }
   | { kind: "fish"; id: string }
   | { kind: "catch"; id: string }
   | { kind: "edit"; id: string }
@@ -266,10 +267,13 @@ export default function Fishdex() {
       setOverlay({ kind: "confirm" });
     });
   }
-  async function caughtIt() {
-    if (!draft || !draft.dateConfirmed) return;
+  async function caughtIt(snapshot = draft) {
+    if (!snapshot) return;
+    if (!snapshot.dateConfirmed) {
+      setOverlay({ kind: "catchDate" });
+      return;
+    }
     await run(async () => {
-      const snapshot = draft;
       const c: Catch = {
         id: uid(),
         profileId: snapshot.profileId,
@@ -999,8 +1003,8 @@ export default function Fishdex() {
             footer={
               <Button
                 label={busy ? "Saving catch…" : "Caught it!"}
-                onPress={caughtIt}
-                disabled={busy || !draft.dateConfirmed}
+                onPress={() => void caughtIt()}
+                disabled={busy}
               />
             }
           >
@@ -1057,30 +1061,39 @@ export default function Fishdex() {
               }
               onPress={() => setDraft({ ...draft, speciesId: "unknown" })}
             />
-            {draft.source === "library" && (
-              <View style={s.card}>
-                <Text style={s.label}>When was it caught?</Text>
-                <Copy muted>
-                  {dateLabel(draft.date)}. Imported photos have no fishing
-                  location until you choose one.
-                </Copy>
-                <DateField
-                  value={draft.date}
-                  onChange={(date) =>
-                    setDraft({
-                      ...draft,
-                      date: date ?? draft.date,
-                      dateConfirmed: date !== undefined,
-                    })
-                  }
-                />
-              </View>
-            )}
             <Copy muted>
               Bait:{" "}
               {journal.profiles.find((p) => p.id === draft.profileId)?.bait}.
               You can add or change details after saving.
             </Copy>
+          </Sheet>
+        )}
+        {overlay?.kind === "catchDate" && draft && (
+          <Sheet title="When was it caught?" onClose={close}>
+            <Copy>
+              One last detail: check the date for this imported photo, then save
+              your catch. If the photo had no date, we started with today.
+            </Copy>
+            <DateField
+              value={draft.date}
+              confirmLabel={busy ? "Saving catch…" : "Save catch"}
+              disabled={busy}
+              onChange={(date) => {
+                if (date) {
+                  void caughtIt({ ...draft, date, dateConfirmed: true });
+                }
+              }}
+            />
+            <Copy muted>
+              Imported photos have no fishing location until you choose one. You
+              can add a spot and other details after saving.
+            </Copy>
+            <Button
+              secondary
+              label="Back to fish"
+              disabled={busy}
+              onPress={() => setOverlay({ kind: "confirm" })}
+            />
           </Sheet>
         )}
         {overlay?.kind === "fish" && (
@@ -1330,9 +1343,13 @@ function CatchRow({ c, onPress }: { c: Catch; onPress: () => void }) {
 function DateField({
   value,
   onChange,
+  confirmLabel = "Confirm catch date",
+  disabled = false,
 }: {
   value: string;
   onChange: (v: string | undefined) => void;
+  confirmLabel?: string;
+  disabled?: boolean;
 }) {
   const [text, setText] = useState(dateInput(value));
   const [invalid, setInvalid] = useState(false);
@@ -1341,6 +1358,7 @@ function DateField({
       <Field
         label="Catch date and time"
         value={text}
+        editable={!disabled}
         placeholder="YYYY-MM-DD HH:mm"
         onChangeText={(value) => {
           setText(value);
@@ -1350,7 +1368,8 @@ function DateField({
       />
       <Button
         secondary
-        label="Confirm catch date"
+        label={confirmLabel}
+        disabled={disabled}
         onPress={() => {
           const parsed = new Date(text.replace(" ", "T"));
           const ok =
