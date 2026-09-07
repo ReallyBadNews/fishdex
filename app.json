@@ -1,14 +1,19 @@
 {
   "expo": {
-    "name": "fishdex",
+    "name": "Fishdex",
     "slug": "fishdex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "fishdex",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "bundleIdentifier": "com.reallybadnews.fishdex",
+      "appleTeamId": "8RUFK4742C",
+      "supportsTablet": false,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -28,15 +33,46 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#183F35",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 90
+        }
+      ],
+      "expo-sqlite",
+      "expo-sharing",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Photograph your catch for your private Fishdex journal.",
+          "recordAudioAndroid": false,
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose fish photos to add to your private journal.",
+          "cameraPermission": "Photograph your catch for your private journal.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Save the private location where you caught your fish."
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d71e4ab8-5541-41f2-9319-d1dcf9a1440f"
+      }
+    },
+    "owner": "reallybadnews"
   }
 }
