@@ -12,6 +12,7 @@ import {
   Platform,
   Animated,
   AccessibilityInfo,
+  Modal,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CameraView, useCameraPermissions } from "expo-camera";
@@ -34,6 +35,7 @@ import {
   uid,
   colors,
   removeProfile,
+  mergeCatchEdit,
   badges,
   type Journal,
   type Catch,
@@ -311,11 +313,13 @@ export default function Fishdex() {
       }
     });
   }
-  const updateCatch = (c: Catch) => {
+  const updateCatch = (c: Catch, locationEdited: boolean) => {
     try {
       commit((j) => ({
         ...j,
-        catches: j.catches.map((old) => (old.id === c.id ? c : old)),
+        catches: j.catches.map((old) =>
+          old.id === c.id ? mergeCatchEdit(old, c, locationEdited) : old,
+        ),
       }));
       setOverlay({ kind: "catch", id: c.id });
       setToast("Details saved");
@@ -804,358 +808,449 @@ export default function Fishdex() {
           ))}
         </View>
       </SafeAreaView>
-      {overlay?.kind === "profiles" && (
-        <Sheet title="Our anglers" onClose={close}>
-          <Copy>
-            Everyone gets their own discoveries. Fishing spots belong to the
-            whole crew.
-          </Copy>
-          {journal.profiles.map((p) => (
-            <View key={p.id} style={styles.spotRow}>
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel={`Use ${p.name}'s journal`}
-                style={[s.row, { flex: 1 }]}
-                onPress={() => {
-                  try {
-                    commit((j) => ({ ...j, activeProfileId: p.id }));
-                    setOverlay(null);
-                    setFilter("all");
-                  } catch (e) {
-                    error(e);
-                  }
-                }}
-              >
-                <View
-                  style={[
-                    styles.avatar,
-                    {
-                      backgroundColor: p.color,
-                      width: 48,
-                      height: 48,
-                      borderRadius: 24,
-                    },
-                  ]}
-                >
-                  <Text style={styles.avatarText}>{p.name[0]}</Text>
-                </View>
-                <View>
-                  <Text style={styles.rowTitle}>
-                    {p.name}
-                    {p.id === profile.id ? " ✓" : ""}
-                  </Text>
-                  <Text style={s.small}>
-                    {journal.catches.filter((c) => c.profileId === p.id).length}{" "}
-                    catches
-                  </Text>
-                </View>
-              </Pressable>
-              <Pressable
-                accessibilityRole="button"
-                accessibilityLabel={`Edit ${p.name}`}
-                onPress={() => setOverlay({ kind: "profile", id: p.id })}
-                style={{ padding: 14 }}
-              >
-                <Text style={{ color: C.lake }}>Edit</Text>
-              </Pressable>
-            </View>
-          ))}
-          <Button
-            label="＋ Add an angler"
-            onPress={() => setOverlay({ kind: "profile" })}
-          />
-        </Sheet>
-      )}
-      {overlay?.kind === "profile" && (
-        <ProfileEditor
-          key={overlay.id ?? "new"}
-          journal={journal}
-          id={overlay.id}
-          onClose={() => setOverlay({ kind: "profiles" })}
-          onSave={(id, name, color) => {
-            try {
-              commit((j) => ({
-                ...j,
-                profiles: id
-                  ? j.profiles.map((p) =>
-                      p.id === id ? { ...p, name, color } : p,
-                    )
-                  : [
-                      ...j.profiles,
-                      { id: uid(), name, color, bait: "Not recorded" },
-                    ],
-              }));
-              setOverlay({ kind: "profiles" });
-            } catch (e) {
-              error(e);
-            }
-          }}
-          onRemove={(id, target) => {
-            try {
-              commit((j) => removeProfile(j, id, target));
-              setOverlay({ kind: "profiles" });
-            } catch (e) {
-              error(e);
-            }
-          }}
-        />
-      )}
-      {overlay?.kind === "scan" && (
-        <Sheet title="A new discovery" onClose={close} scroll={false}>
-          <View style={{ flex: 1, padding: 20, gap: 14 }}>
+      <Modal
+        visible={overlay !== null}
+        animationType="slide"
+        presentationStyle="fullScreen"
+        onRequestClose={close}
+      >
+        {overlay?.kind === "profiles" && (
+          <Sheet title="Our anglers" onClose={close}>
             <Copy>
-              Photograph the whole fish from the side. You’ll choose its species
-              next.
+              Everyone gets their own discoveries. Fishing spots belong to the
+              whole crew.
             </Copy>
-            <View style={styles.camera}>
-              {permission?.granted && Platform.OS !== "web" ? (
-                <CameraView
-                  ref={camera}
-                  style={StyleSheet.absoluteFill}
-                  facing="back"
-                  mode="picture"
-                  onCameraReady={() => setReady(true)}
-                  onMountError={() =>
-                    error(
-                      new Error(
-                        "Camera could not open. You can use an existing photo or save without one.",
-                      ),
-                    )
-                  }
-                />
-              ) : (
-                <View style={{ padding: 25, gap: 18 }}>
-                  <Text style={{ fontSize: 36, color: C.paper }}>◎</Text>
-                  <Text style={{ color: C.paper, fontSize: 18 }}>
-                    A photo for your field journal
-                  </Text>
+            {journal.profiles.map((p) => (
+              <View key={p.id} style={styles.spotRow}>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={`Use ${p.name}'s journal`}
+                  style={[s.row, { flex: 1 }]}
+                  onPress={() => {
+                    try {
+                      commit((j) => ({ ...j, activeProfileId: p.id }));
+                      setOverlay(null);
+                      setFilter("all");
+                    } catch (e) {
+                      error(e);
+                    }
+                  }}
+                >
+                  <View
+                    style={[
+                      styles.avatar,
+                      {
+                        backgroundColor: p.color,
+                        width: 48,
+                        height: 48,
+                        borderRadius: 24,
+                      },
+                    ]}
+                  >
+                    <Text style={styles.avatarText}>{p.name[0]}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.rowTitle}>
+                      {p.name}
+                      {p.id === profile.id ? " ✓" : ""}
+                    </Text>
+                    <Text style={s.small}>
+                      {
+                        journal.catches.filter((c) => c.profileId === p.id)
+                          .length
+                      }{" "}
+                      catches
+                    </Text>
+                  </View>
+                </Pressable>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={`Edit ${p.name}`}
+                  onPress={() => setOverlay({ kind: "profile", id: p.id })}
+                  style={{ padding: 14 }}
+                >
+                  <Text style={{ color: C.lake }}>Edit</Text>
+                </Pressable>
+              </View>
+            ))}
+            <Button
+              label="＋ Add an angler"
+              onPress={() => setOverlay({ kind: "profile" })}
+            />
+          </Sheet>
+        )}
+        {overlay?.kind === "profile" && (
+          <ProfileEditor
+            key={overlay.id ?? "new"}
+            journal={journal}
+            id={overlay.id}
+            onClose={() => setOverlay({ kind: "profiles" })}
+            onSave={(id, name, color) => {
+              try {
+                commit((j) => ({
+                  ...j,
+                  profiles: id
+                    ? j.profiles.map((p) =>
+                        p.id === id ? { ...p, name, color } : p,
+                      )
+                    : [
+                        ...j.profiles,
+                        { id: uid(), name, color, bait: "Not recorded" },
+                      ],
+                }));
+                setOverlay({ kind: "profiles" });
+              } catch (e) {
+                error(e);
+              }
+            }}
+            onRemove={(id, target) => {
+              try {
+                commit((j) => removeProfile(j, id, target));
+                setOverlay({ kind: "profiles" });
+              } catch (e) {
+                error(e);
+              }
+            }}
+          />
+        )}
+        {overlay?.kind === "scan" && (
+          <Sheet title="A new discovery" onClose={close} scroll={false}>
+            <View style={{ flex: 1, padding: 20, gap: 14 }}>
+              <Copy>
+                Photograph the whole fish from the side. You’ll choose its
+                species next.
+              </Copy>
+              <View style={styles.camera}>
+                {permission?.granted && Platform.OS !== "web" ? (
+                  <CameraView
+                    ref={camera}
+                    style={StyleSheet.absoluteFill}
+                    facing="back"
+                    mode="picture"
+                    onCameraReady={() => setReady(true)}
+                    onMountError={() =>
+                      error(
+                        new Error(
+                          "Camera could not open. You can use an existing photo or save without one.",
+                        ),
+                      )
+                    }
+                  />
+                ) : (
+                  <View style={{ padding: 25, gap: 18 }}>
+                    <Text style={{ fontSize: 36, color: C.paper }}>◎</Text>
+                    <Text style={{ color: C.paper, fontSize: 18 }}>
+                      A photo for your field journal
+                    </Text>
+                    <Button
+                      secondary
+                      label="Enable camera"
+                      onPress={() => {
+                        void requestPermission().then((p) => {
+                          if (!p.granted)
+                            Alert.alert(
+                              "Camera access is off",
+                              "Enable camera access in Settings, or choose a photo.",
+                              [
+                                { text: "Not now" },
+                                {
+                                  text: "Open Settings",
+                                  onPress: () => Linking.openSettings(),
+                                },
+                              ],
+                            );
+                        });
+                      }}
+                    />
+                  </View>
+                )}
+                <View pointerEvents="none" style={styles.frame} />
+              </View>
+              <Button
+                label={busy ? "Saving photo…" : "◎  Take photo"}
+                disabled={busy || !ready}
+                onPress={() => capture("camera")}
+              />
+              <View style={s.row}>
+                <View style={{ flex: 1 }}>
                   <Button
                     secondary
-                    label="Enable camera"
+                    label="Choose photo"
+                    disabled={busy}
+                    onPress={() => capture("library")}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Button
+                    secondary
+                    label="No photo"
+                    disabled={busy}
+                    onPress={() => capture("manual")}
+                  />
+                </View>
+              </View>
+            </View>
+          </Sheet>
+        )}
+        {overlay?.kind === "confirm" && draft && (
+          <Sheet
+            title="Choose your fish"
+            onClose={close}
+            footer={
+              <Button
+                label={busy ? "Saving catch…" : "Caught it!"}
+                onPress={caughtIt}
+                disabled={busy || !draft.dateConfirmed}
+              />
+            }
+          >
+            {draft.photo && (
+              <Image
+                source={{ uri: photoUri(draft.photo) }}
+                style={styles.catchPhoto}
+              />
+            )}
+            <Copy>
+              Match the clues below. If you’re not sure, save now and identify
+              it later.
+            </Copy>
+            <Select
+              label="Caught by"
+              value={draft.profileId}
+              options={journal.profiles.map((p) => ({
+                label: p.name,
+                value: p.id,
+              }))}
+              onChange={(profileId) => setDraft({ ...draft, profileId })}
+            />
+            {species.map((f) => (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityState={{ selected: draft.speciesId === f.id }}
+                key={f.id}
+                style={[
+                  styles.fishChoice,
+                  draft.speciesId === f.id && styles.selected,
+                ]}
+                onPress={() => setDraft({ ...draft, speciesId: f.id })}
+              >
+                <Image
+                  source={pictures[f.id]}
+                  resizeMode="contain"
+                  style={{ width: 100, height: 72 }}
+                />
+                <View style={{ flex: 1, gap: 5 }}>
+                  <Text style={styles.rowTitle}>
+                    {f.name}
+                    {draft.speciesId === f.id ? " ✓" : ""}
+                  </Text>
+                  <Text style={s.small}>{f.clues}</Text>
+                </View>
+              </Pressable>
+            ))}
+            <Button
+              secondary
+              label={
+                draft.speciesId === "unknown"
+                  ? "✓ Not sure / another species"
+                  : "Not sure / another species"
+              }
+              onPress={() => setDraft({ ...draft, speciesId: "unknown" })}
+            />
+            {draft.source === "library" && (
+              <View style={s.card}>
+                <Text style={s.label}>When was it caught?</Text>
+                <Copy muted>
+                  {dateLabel(draft.date)}. Imported photos have no fishing
+                  location until you choose one.
+                </Copy>
+                <DateField
+                  value={draft.date}
+                  onChange={(date) =>
+                    setDraft({
+                      ...draft,
+                      date: date ?? draft.date,
+                      dateConfirmed: date !== undefined,
+                    })
+                  }
+                />
+              </View>
+            )}
+            <Copy muted>
+              Bait:{" "}
+              {journal.profiles.find((p) => p.id === draft.profileId)?.bait}.
+              You can add or change details after saving.
+            </Copy>
+          </Sheet>
+        )}
+        {overlay?.kind === "fish" && (
+          <Sheet title="Field guide" onClose={close}>
+            {(() => {
+              const f = species.find((f) => f.id === overlay.id)!;
+              return (
+                <>
+                  <Text style={{ color: C.lake, fontWeight: "600" }}>
+                    {discovered.has(f.id)
+                      ? "✦ In your collection"
+                      : "◇ Find it on your next adventure"}
+                  </Text>
+                  <Title>{f.name}</Title>
+                  <Text style={s.small}>{f.scientific}</Text>
+                  {discovered.has(f.id) ? (
+                    <ModelView id={f.id} />
+                  ) : (
+                    <View style={s.card}>
+                      {fishImage(f.id, true, 200)}
+                      <Copy muted>
+                        Confirm your first catch to unlock this 3D specimen.
+                      </Copy>
+                    </View>
+                  )}
+                  <Text style={s.small}>
+                    {discovered.has(f.id)
+                      ? "Drag to rotate. Pinch to look closer."
+                      : "Read its clues before you head out."}
+                  </Text>
+                  <Text style={s.sectionTitle}>{f.title}</Text>
+                  <Copy>{f.habitat}</Copy>
+                  {discovered.has(f.id) && (
+                    <View style={s.card}>
+                      <Text style={s.sectionTitle}>Your field records</Text>
+                      <Copy>
+                        {catches.filter((c) => c.speciesId === f.id).length}{" "}
+                        confirmed catches
+                      </Copy>
+                      <Copy muted>
+                        Longest measured:{" "}
+                        {Math.max(
+                          0,
+                          ...catches
+                            .filter((c) => c.speciesId === f.id)
+                            .map((c) => c.length ?? 0),
+                        ) || "—"}{" "}
+                        inches
+                      </Copy>
+                      <Copy muted>
+                        Heaviest weighed:{" "}
+                        {Math.max(
+                          0,
+                          ...catches
+                            .filter((c) => c.speciesId === f.id)
+                            .map((c) => c.weight ?? 0),
+                        ) || "—"}{" "}
+                        pounds
+                      </Copy>
+                    </View>
+                  )}
+                  {f.facts.map((fact) => (
+                    <View key={fact} style={styles.fact}>
+                      <Text style={{ color: C.lake }}>✦</Text>
+                      <View style={{ flex: 1 }}>
+                        <Copy>{fact}</Copy>
+                      </View>
+                    </View>
+                  ))}
+                  <Button
+                    secondary
+                    label="Listen to the field notes"
                     onPress={() => {
-                      void requestPermission().then((p) => {
-                        if (!p.granted)
-                          Alert.alert(
-                            "Camera access is off",
-                            "Enable camera access in Settings, or choose a photo.",
-                            [
-                              { text: "Not now" },
-                              {
-                                text: "Open Settings",
-                                onPress: () => Linking.openSettings(),
-                              },
-                            ],
-                          );
+                      void Speech.stop();
+                      Speech.speak(`${f.name}. ${f.facts.join(" ")}`, {
+                        rate: 0.85,
                       });
                     }}
                   />
-                </View>
-              )}
-              <View pointerEvents="none" style={styles.frame} />
-            </View>
-            <Button
-              label={busy ? "Saving photo…" : "◎  Take photo"}
-              disabled={busy || !ready}
-              onPress={() => capture("camera")}
-            />
-            <View style={s.row}>
-              <View style={{ flex: 1 }}>
-                <Button
-                  secondary
-                  label="Choose photo"
-                  disabled={busy}
-                  onPress={() => capture("library")}
-                />
-              </View>
-              <View style={{ flex: 1 }}>
-                <Button
-                  secondary
-                  label="No photo"
-                  disabled={busy}
-                  onPress={() => capture("manual")}
-                />
-              </View>
-            </View>
-          </View>
-        </Sheet>
-      )}
-      {overlay?.kind === "confirm" && draft && (
-        <Sheet title="Choose your fish" onClose={close}>
-          {draft.photo && (
-            <Image
-              source={{ uri: photoUri(draft.photo) }}
-              style={styles.catchPhoto}
-            />
-          )}
-          <Copy>
-            Match the clues below. If you’re not sure, save now and identify it
-            later.
-          </Copy>
-          <Select
-            label="Caught by"
-            value={draft.profileId}
-            options={journal.profiles.map((p) => ({
-              label: p.name,
-              value: p.id,
-            }))}
-            onChange={(profileId) => setDraft({ ...draft, profileId })}
-          />
-          {species.map((f) => (
-            <Pressable
-              accessibilityRole="button"
-              accessibilityState={{ selected: draft.speciesId === f.id }}
-              key={f.id}
-              style={[
-                styles.fishChoice,
-                draft.speciesId === f.id && styles.selected,
-              ]}
-              onPress={() => setDraft({ ...draft, speciesId: f.id })}
-            >
-              <Image
-                source={pictures[f.id]}
-                resizeMode="contain"
-                style={{ width: 100, height: 72 }}
-              />
-              <View style={{ flex: 1, gap: 5 }}>
-                <Text style={styles.rowTitle}>
-                  {f.name}
-                  {draft.speciesId === f.id ? " ✓" : ""}
-                </Text>
-                <Text style={s.small}>{f.clues}</Text>
-              </View>
-            </Pressable>
-          ))}
-          <Button
-            secondary
-            label={
-              draft.speciesId === "unknown"
-                ? "✓ Not sure / another species"
-                : "Not sure / another species"
-            }
-            onPress={() => setDraft({ ...draft, speciesId: "unknown" })}
-          />
-          {draft.source === "library" && (
-            <View style={s.card}>
-              <Text style={s.label}>When was it caught?</Text>
-              <Copy muted>
-                {dateLabel(draft.date)}. Imported photos have no fishing
-                location until you choose one.
-              </Copy>
-              <DateField
-                value={draft.date}
-                onChange={(date) =>
-                  setDraft({ ...draft, date, dateConfirmed: true })
-                }
-              />
-              <Button
-                secondary
-                label={
-                  draft.dateConfirmed
-                    ? "✓ Catch date confirmed"
-                    : "Use this date"
-                }
-                onPress={() => setDraft({ ...draft, dateConfirmed: true })}
-              />
-            </View>
-          )}
-          <Copy muted>
-            Bait: {journal.profiles.find((p) => p.id === draft.profileId)?.bait}
-            . You can add or change details after saving.
-          </Copy>
-          <Button
-            label={busy ? "Saving catch…" : "Caught it!"}
-            onPress={caughtIt}
-            disabled={busy || !draft.dateConfirmed}
-          />
-        </Sheet>
-      )}
-      {overlay?.kind === "fish" && (
-        <Sheet title="Field guide" onClose={close}>
-          {(() => {
-            const f = species.find((f) => f.id === overlay.id)!;
-            return (
-              <>
-                <Text style={{ color: C.lake, fontWeight: "600" }}>
-                  {discovered.has(f.id)
-                    ? "✦ In your collection"
-                    : "◇ Find it on your next adventure"}
-                </Text>
-                <Title>{f.name}</Title>
-                <Text style={s.small}>{f.scientific}</Text>
-                {discovered.has(f.id) ? (
-                  <ModelView id={f.id} />
-                ) : (
-                  <View style={s.card}>
-                    {fishImage(f.id, true, 200)}
-                    <Copy muted>
-                      Confirm your first catch to unlock this 3D specimen.
-                    </Copy>
-                  </View>
-                )}
-                <Text style={s.small}>
-                  {discovered.has(f.id)
-                    ? "Drag to rotate. Pinch to look closer."
-                    : "Read its clues before you head out."}
-                </Text>
-                <Text style={s.sectionTitle}>{f.title}</Text>
-                <Copy>{f.habitat}</Copy>
-                {f.facts.map((fact) => (
-                  <View key={fact} style={styles.fact}>
-                    <Text style={{ color: C.lake }}>✦</Text>
-                    <View style={{ flex: 1 }}>
-                      <Copy>{fact}</Copy>
-                    </View>
-                  </View>
-                ))}
-                <Button
-                  secondary
-                  label="Listen to the field notes"
-                  onPress={() => {
-                    void Speech.stop();
-                    Speech.speak(`${f.name}. ${f.facts.join(" ")}`, {
-                      rate: 0.85,
-                    });
-                  }}
-                />
-                <Text style={s.small}>
-                  Field notes adapted from Michigan DNR.
-                </Text>
-                <Button label="Log a catch" onPress={startScan} />
-              </>
-            );
-          })()}
-        </Sheet>
-      )}
-      {overlay?.kind === "reveal" &&
-        journal.catches.find((c) => c.id === overlay.id) && (
-          <Sheet title="In the journal" onClose={close}>
-            <Reveal
-              c={journal.catches.find((c) => c.id === overlay.id)!}
-              isNew={overlay.isNew}
-            />
-            <Button
-              label="Add details"
-              onPress={() => setOverlay({ kind: "edit", id: overlay.id })}
-            />
-            <Button label="Back to fishing" secondary onPress={close} />
+                  <Text style={s.small}>
+                    Field notes adapted from Michigan DNR.
+                  </Text>
+                  <Button label="Log a catch" onPress={startScan} />
+                </>
+              );
+            })()}
           </Sheet>
         )}
-      {overlay?.kind === "catch" &&
-        journal.catches.find((c) => c.id === overlay.id) && (
-          <CatchDetail
-            c={journal.catches.find((c) => c.id === overlay.id)!}
-            journal={journal}
+        {overlay?.kind === "reveal" &&
+          journal.catches.find((c) => c.id === overlay.id) && (
+            <Sheet title="In the journal" onClose={close}>
+              <Reveal
+                c={journal.catches.find((c) => c.id === overlay.id)!}
+                isNew={overlay.isNew}
+              />
+              <Button
+                label="Add details"
+                onPress={() => setOverlay({ kind: "edit", id: overlay.id })}
+              />
+              <Button label="Back to fishing" secondary onPress={close} />
+            </Sheet>
+          )}
+        {overlay?.kind === "catch" &&
+          journal.catches.find((c) => c.id === overlay.id) && (
+            <CatchDetail
+              c={journal.catches.find((c) => c.id === overlay.id)!}
+              journal={journal}
+              onClose={close}
+              onEdit={() => setOverlay({ kind: "edit", id: overlay.id })}
+              onDelete={() =>
+                confirm(
+                  "Remove this catch?",
+                  "This catch will leave the journal. Collection progress will update.",
+                  () => {
+                    try {
+                      commit((j) => ({
+                        ...j,
+                        catches: j.catches.filter((c) => c.id !== overlay.id),
+                      }));
+                      setOverlay(null);
+                    } catch (e) {
+                      error(e);
+                    }
+                  },
+                  true,
+                )
+              }
+            />
+          )}
+        {overlay?.kind === "edit" &&
+          journal.catches.find((c) => c.id === overlay.id) && (
+            <CatchEditor
+              key={overlay.id}
+              c={journal.catches.find((c) => c.id === overlay.id)!}
+              journal={journal}
+              onClose={() => setOverlay({ kind: "catch", id: overlay.id })}
+              onSave={updateCatch}
+            />
+          )}
+        {overlay?.kind === "spot" && (
+          <SpotEditor
+            key={overlay.id ?? "new"}
+            spot={journal.spots.find((p) => p.id === overlay.id)}
+            coordinate={overlay.coordinate}
             onClose={close}
-            onEdit={() => setOverlay({ kind: "edit", id: overlay.id })}
-            onDelete={() =>
+            onSave={(spot) => {
+              try {
+                commit((j) => ({
+                  ...j,
+                  spots: j.spots.some((p) => p.id === spot.id)
+                    ? j.spots.map((p) => (p.id === spot.id ? spot : p))
+                    : [...j.spots, spot],
+                }));
+                setOverlay(null);
+              } catch (e) {
+                error(e);
+              }
+            }}
+            onDelete={(id) =>
               confirm(
-                "Remove this catch?",
-                "This catch will leave the journal. Collection progress will update.",
+                "Remove this spot?",
+                "Catch coordinates will be kept, but the saved spot name will be removed.",
                 () => {
                   try {
                     commit((j) => ({
                       ...j,
-                      catches: j.catches.filter((c) => c.id !== overlay.id),
+                      spots: j.spots.filter((p) => p.id !== id),
+                      catches: j.catches.map((c) =>
+                        c.spotId === id ? { ...c, spotId: undefined } : c,
+                      ),
                     }));
                     setOverlay(null);
                   } catch (e) {
@@ -1167,82 +1262,31 @@ export default function Fishdex() {
             }
           />
         )}
-      {overlay?.kind === "edit" &&
-        journal.catches.find((c) => c.id === overlay.id) && (
-          <CatchEditor
-            key={overlay.id}
-            c={journal.catches.find((c) => c.id === overlay.id)!}
-            journal={journal}
-            onClose={() => setOverlay({ kind: "catch", id: overlay.id })}
-            onSave={updateCatch}
-          />
-        )}
-      {overlay?.kind === "spot" && (
-        <SpotEditor
-          key={overlay.id ?? "new"}
-          spot={journal.spots.find((p) => p.id === overlay.id)}
-          coordinate={overlay.coordinate}
-          onClose={close}
-          onSave={(spot) => {
-            try {
-              commit((j) => ({
-                ...j,
-                spots: j.spots.some((p) => p.id === spot.id)
-                  ? j.spots.map((p) => (p.id === spot.id ? spot : p))
-                  : [...j.spots, spot],
-              }));
-              setOverlay(null);
-            } catch (e) {
-              error(e);
-            }
-          }}
-          onDelete={(id) =>
-            confirm(
-              "Remove this spot?",
-              "Catch coordinates will be kept, but the saved spot name will be removed.",
-              () => {
+        {overlay?.kind === "tackle" && (
+          <Sheet title="The tackle box" onClose={close}>
+            <Title>{overlay.name}</Title>
+            <ModelView id={overlay.id} />
+            <Copy muted>Drag to rotate. Pinch to inspect.</Copy>
+            <Button
+              label={`Use ${overlay.name.toLowerCase()}`}
+              onPress={() => {
                 try {
                   commit((j) => ({
                     ...j,
-                    spots: j.spots.filter((p) => p.id !== id),
-                    catches: j.catches.map((c) =>
-                      c.spotId === id ? { ...c, spotId: undefined } : c,
+                    profiles: j.profiles.map((p) =>
+                      p.id === profile.id ? { ...p, bait: overlay.name } : p,
                     ),
                   }));
                   setOverlay(null);
+                  setToast("Bait selected for your next catch");
                 } catch (e) {
                   error(e);
                 }
-              },
-              true,
-            )
-          }
-        />
-      )}
-      {overlay?.kind === "tackle" && (
-        <Sheet title="The tackle box" onClose={close}>
-          <Title>{overlay.name}</Title>
-          <ModelView id={overlay.id} />
-          <Copy muted>Drag to rotate. Pinch to inspect.</Copy>
-          <Button
-            label={`Use ${overlay.name.toLowerCase()}`}
-            onPress={() => {
-              try {
-                commit((j) => ({
-                  ...j,
-                  profiles: j.profiles.map((p) =>
-                    p.id === profile.id ? { ...p, bait: overlay.name } : p,
-                  ),
-                }));
-                setOverlay(null);
-                setToast("Bait selected for your next catch");
-              } catch (e) {
-                error(e);
-              }
-            }}
-          />
-        </Sheet>
-      )}
+              }}
+            />
+          </Sheet>
+        )}
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -1261,7 +1305,11 @@ function CatchRow({ c, onPress }: { c: Catch; onPress: () => void }) {
             : (pictures[c.speciesId] ?? pictures.bluegill)
         }
         resizeMode={c.photo ? "cover" : "contain"}
-        style={styles.rowPhoto}
+        style={[
+          styles.rowPhoto,
+          !c.photo &&
+            c.speciesId === "unknown" && { tintColor: "#687C68", opacity: 0.5 },
+        ]}
       />
       <View style={{ flex: 1, gap: 4 }}>
         <Text style={styles.rowTitle}>
@@ -1284,7 +1332,7 @@ function DateField({
   onChange,
 }: {
   value: string;
-  onChange: (v: string) => void;
+  onChange: (v: string | undefined) => void;
 }) {
   const [text, setText] = useState(dateInput(value));
   const [invalid, setInvalid] = useState(false);
@@ -1294,8 +1342,16 @@ function DateField({
         label="Catch date and time"
         value={text}
         placeholder="YYYY-MM-DD HH:mm"
-        onChangeText={setText}
-        onBlur={() => {
+        onChangeText={(value) => {
+          setText(value);
+          onChange(undefined);
+          setInvalid(false);
+        }}
+      />
+      <Button
+        secondary
+        label="Confirm catch date"
+        onPress={() => {
           const parsed = new Date(text.replace(" ", "T"));
           const ok =
             /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(text) &&
@@ -1304,7 +1360,10 @@ function DateField({
           if (ok) {
             onChange(parsed.toISOString());
             setInvalid(false);
-          } else setInvalid(true);
+          } else {
+            setInvalid(true);
+            onChange(undefined);
+          }
         }}
       />
       {invalid && (
@@ -1461,9 +1520,14 @@ function CatchEditor({
   c: Catch;
   journal: Journal;
   onClose: () => void;
-  onSave: (c: Catch) => void;
+  onSave: (c: Catch, locationEdited: boolean) => void;
 }) {
   const [d, setD] = useState(c);
+  const locationEdited = useRef(false);
+  useEffect(() => {
+    if (!locationEdited.current)
+      setD((old) => ({ ...old, coordinate: c.coordinate, spotId: c.spotId }));
+  }, [c.coordinate, c.spotId]);
   const [length, setLength] = useState(c.length?.toString() ?? "");
   const [weight, setWeight] = useState(c.weight?.toString() ?? "");
   const [dateText, setDateText] = useState(dateInput(c.date));
@@ -1494,7 +1558,10 @@ function CatchEditor({
       setMessage("Use a valid date and time: YYYY-MM-DD HH:mm.");
       return;
     }
-    onSave({ ...d, length: l, weight: w, date: date.toISOString() });
+    onSave(
+      { ...d, length: l, weight: w, date: date.toISOString() },
+      locationEdited.current,
+    );
   }
   return (
     <Sheet title="Catch details" onClose={onClose}>
@@ -1562,6 +1629,7 @@ function CatchEditor({
           ...journal.spots.map((p) => ({ label: p.name, value: p.id })),
         ]}
         onChange={(spotId) => {
+          locationEdited.current = true;
           const spot = journal.spots.find((p) => p.id === spotId);
           setD({
             ...d,
@@ -1587,9 +1655,10 @@ function CatchEditor({
               setLocating(true);
               void currentCoordinate()
                 .then((coordinate) => {
-                  if (coordinate)
+                  if (coordinate) {
+                    locationEdited.current = true;
                     setD((old) => ({ ...old, coordinate, spotId: undefined }));
-                  else
+                  } else
                     error(
                       new Error(
                         "Could not get a location. You can choose a named spot later.",
@@ -1606,9 +1675,10 @@ function CatchEditor({
         <Button
           secondary
           label="Remove location"
-          onPress={() =>
-            setD({ ...d, coordinate: undefined, spotId: undefined })
-          }
+          onPress={() => {
+            locationEdited.current = true;
+            setD({ ...d, coordinate: undefined, spotId: undefined });
+          }}
         />
       )}
       <Select
@@ -1677,7 +1747,11 @@ function CatchDetail({
           <Image
             source={pictures[c.speciesId] ?? pictures.bluegill}
             resizeMode="contain"
-            style={{ height: 200, width: "100%" }}
+            style={{
+              height: 200,
+              width: "100%",
+              tintColor: c.speciesId === "unknown" ? "#687C68" : undefined,
+            }}
           />
         )}
         <Title>{c.nickname || fishName(c.speciesId)}</Title>

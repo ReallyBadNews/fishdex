@@ -80,12 +80,13 @@ export function badges(j: Journal, profileId: string) {
   );
   const record = catches.some(
     (c) =>
+      c.speciesId !== "unknown" &&
       c.length &&
       catches.some(
         (older) =>
           older.speciesId === c.speciesId &&
           older.length &&
-          older.date < c.date &&
+          Date.parse(older.date) < Date.parse(c.date) &&
           older.length < c.length!,
       ),
   );
@@ -94,6 +95,17 @@ export function badges(j: Journal, profileId: string) {
     { name: "Lake explorer", earned: discovered.size === 3, icon: "✦" },
     { name: "Personal best", earned: record, icon: "⚑" },
   ];
+}
+export function mergeCatchEdit(
+  current: Catch,
+  edited: Catch,
+  locationEdited: boolean,
+): Catch {
+  return {
+    ...edited,
+    coordinate: locationEdited ? edited.coordinate : current.coordinate,
+    spotId: locationEdited ? edited.spotId : current.spotId,
+  };
 }
 function fail(): never {
   throw new Error(

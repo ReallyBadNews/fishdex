@@ -5,6 +5,7 @@ import {
   validateJournal,
   removeProfile,
   badges,
+  mergeCatchEdit,
   type Catch,
 } from "../src/data/state.ts";
 import { weightGuide } from "../src/data/weight.ts";
@@ -25,6 +26,15 @@ test("journal round-trip preserves family profiles, catches and private coordina
     coordinate: { latitude: 44.1, longitude: -85.2, accuracy: 12 },
   });
   assert.deepEqual(validateJournal(JSON.parse(JSON.stringify(j))), j);
+});
+test("editing details preserves a GPS fix that arrived after opening the form, unless location was explicitly changed", () => {
+  const current = { ...catchOne, coordinate: { latitude: 44, longitude: -85 } };
+  const edited = { ...catchOne, nickname: "First bluegill" };
+  assert.deepEqual(
+    mergeCatchEdit(current, edited, false).coordinate,
+    current.coordinate,
+  );
+  assert.equal(mergeCatchEdit(current, edited, true).coordinate, undefined);
 });
 test("removing an angler transfers catches and switches active profile without losing spots", () => {
   const j = initialJournal();
