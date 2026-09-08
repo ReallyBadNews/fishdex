@@ -1,0 +1,13 @@
+{
+  "asset": "soft-plastic",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "soft-plastic.blend",
+  "source_bytes": 519367,
+  "source_sha256": "e2ce88f787a8400b0724b7668d6f2b0b1aa9538acdbdd2235f55291b4d2d84d6",
+  "glb_bytes": 664704,
+  "glb_sha256": "3dcdf9d77b672fd40a1d218d8dec64fcb7c0970f80e87df807877fce80e0b943",
+  "primitives": 1,
+  "triangles": 25076,
+  "scene": "Fishdex v4 soft-plastic editable"
+}

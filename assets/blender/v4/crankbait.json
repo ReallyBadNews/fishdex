@@ -1,0 +1,13 @@
+{
+  "asset": "crankbait",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "crankbait.blend",
+  "source_bytes": 1030399,
+  "source_sha256": "5b0d16d04af3b420d935df3faaaeb494ea276a237c20def2d01b9fd9bdf64d67",
+  "glb_bytes": 847336,
+  "glb_sha256": "305cf65ad56603f0e0483efd36538aaccd753ade354f5630bbcf58140563c8ba",
+  "primitives": 5,
+  "triangles": 33572,
+  "scene": "Fishdex v4 crankbait editable"
+}

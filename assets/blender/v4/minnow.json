@@ -1,0 +1,13 @@
+{
+  "asset": "minnow",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "minnow.blend",
+  "source_bytes": 1265243,
+  "source_sha256": "bddeb1ef5d5c24dff04393facdfc4e066d75b294e0705a61edbde20209808557",
+  "glb_bytes": 1274388,
+  "glb_sha256": "8545016962b5e0f2e02503dec6f80b1b55341a662bf9310c7c92304e20d24a70",
+  "primitives": 7,
+  "triangles": 36824,
+  "scene": "Fishdex v4 minnow editable"
+}

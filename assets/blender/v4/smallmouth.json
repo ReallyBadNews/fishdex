@@ -1,0 +1,13 @@
+{
+  "asset": "smallmouth",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "smallmouth.blend",
+  "source_bytes": 3554478,
+  "source_sha256": "7fca1075c8b7f72d3b4ad985adab7c876602ce241a47abda4ca4bd682defc9cd",
+  "glb_bytes": 2263896,
+  "glb_sha256": "225777e8aebf184a690da31e9ea2479dfb19f622ce882cc6a8c9f3fe1e82be56",
+  "primitives": 10,
+  "triangles": 74508,
+  "scene": "Fishdex v4 smallmouth editable"
+}

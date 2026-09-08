@@ -1,0 +1,13 @@
+{
+  "asset": "flathead-catfish",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "flathead-catfish.blend",
+  "source_bytes": 2958243,
+  "source_sha256": "865ac759e87b52bf12b65bbc9a807894b2e097eb2749aac9c97c2eced44eca92",
+  "glb_bytes": 2071424,
+  "glb_sha256": "c646d71adfa6d067fa5c46e99fcb970a5b76347511bcca70f7b25f939615b5c7",
+  "primitives": 14,
+  "triangles": 72688,
+  "scene": "Fishdex v4 flathead-catfish editable"
+}

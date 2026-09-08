@@ -1,0 +1,13 @@
+{
+  "asset": "black-crappie",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "black-crappie.blend",
+  "source_bytes": 3921735,
+  "source_sha256": "57fc651ff187d3604ecc071588b1f520eb3964cbbf37bdc4ac13bc21daa4ea55",
+  "glb_bytes": 2418160,
+  "glb_sha256": "210dca519790b33cdab2cc57bea7d963ac2277743366425febff4ce6f1b2aabf",
+  "primitives": 10,
+  "triangles": 71232,
+  "scene": "Fishdex v4 black-crappie editable"
+}

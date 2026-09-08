@@ -1,0 +1,13 @@
+{
+  "asset": "brown-bullhead",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "brown-bullhead.blend",
+  "source_bytes": 2883491,
+  "source_sha256": "716202c868dc6f9a189d126c331ef87a882a6c18ac685389a9c7e2704a005410",
+  "glb_bytes": 2041520,
+  "glb_sha256": "4be3b7a630b70ddd1844d3e4f1ff3726aae96cb0796275ae49f5c4b3acd0b236",
+  "primitives": 14,
+  "triangles": 72688,
+  "scene": "Fishdex v4 brown-bullhead editable"
+}

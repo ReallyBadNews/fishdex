@@ -1,0 +1,13 @@
+{
+  "asset": "popper",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "popper.blend",
+  "source_bytes": 1030422,
+  "source_sha256": "07112edd6c323b2f44bf6b6405d1370d2348f77da1bd604195f3e2cc799bb995",
+  "glb_bytes": 836208,
+  "glb_sha256": "ec58d7758a84b065ff000f8f5b2f4cde673578fb5c01cb32fe4d3c0fe847f1cc",
+  "primitives": 5,
+  "triangles": 32942,
+  "scene": "Fishdex v4 popper editable"
+}

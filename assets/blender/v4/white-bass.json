@@ -1,0 +1,13 @@
+{
+  "asset": "white-bass",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "white-bass.blend",
+  "source_bytes": 2123927,
+  "source_sha256": "1960870f8c7f65caf15745cee7ec2f0cf5d74f49c1ac5291f26a0a917a42cf61",
+  "glb_bytes": 2154732,
+  "glb_sha256": "2b6c5454961e8228c6b0976d463272e5e5014beab6a48316831c4ae91fe8b488",
+  "primitives": 10,
+  "triangles": 71532,
+  "scene": "Fishdex v4 white-bass editable"
+}

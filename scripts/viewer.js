@@ -7,11 +7,14 @@ try {
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(innerWidth, innerHeight);
-  renderer.setClearColor(0xe6e9dc, 0);
+  renderer.setClearColor(0xe6e9dc, 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
   document.body.appendChild(renderer.domElement);
   const scene = new THREE.Scene();
+  // Transmission samples the WebGL background, not the HTML behind the canvas.
+  // Match the specimen stage so clear diving lips do not sample a white fallback.
+  scene.background = new THREE.Color(0xe6e9dc);
   // Generated locally: soft reflections without an HDR download or CDN.
   const room = new RoomEnvironment();
   const pmrem = new THREE.PMREMGenerator(renderer);

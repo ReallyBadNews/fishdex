@@ -1,0 +1,126 @@
+[
+  {
+    "id": "bass",
+    "state": "ready"
+  },
+  {
+    "id": "black-bullhead",
+    "state": "ready"
+  },
+  {
+    "id": "black-crappie",
+    "state": "ready"
+  },
+  {
+    "id": "bluegill",
+    "state": "ready"
+  },
+  {
+    "id": "brook-trout",
+    "state": "ready"
+  },
+  {
+    "id": "brown-bullhead",
+    "state": "ready"
+  },
+  {
+    "id": "channel-catfish",
+    "state": "ready"
+  },
+  {
+    "id": "crankbait",
+    "state": "ready"
+  },
+  {
+    "id": "flathead-catfish",
+    "state": "ready"
+  },
+  {
+    "id": "frog",
+    "state": "ready"
+  },
+  {
+    "id": "green-sunfish",
+    "state": "ready"
+  },
+  {
+    "id": "jerkbait",
+    "state": "ready"
+  },
+  {
+    "id": "jig",
+    "state": "ready"
+  },
+  {
+    "id": "lake-trout",
+    "state": "ready"
+  },
+  {
+    "id": "minnow",
+    "state": "ready"
+  },
+  {
+    "id": "muskie",
+    "state": "ready"
+  },
+  {
+    "id": "pike",
+    "state": "ready"
+  },
+  {
+    "id": "popper",
+    "state": "ready"
+  },
+  {
+    "id": "pumpkinseed",
+    "state": "ready"
+  },
+  {
+    "id": "rock-bass",
+    "state": "ready"
+  },
+  {
+    "id": "smallmouth",
+    "state": "ready"
+  },
+  {
+    "id": "soft-plastic",
+    "state": "ready"
+  },
+  {
+    "id": "spinner",
+    "state": "ready"
+  },
+  {
+    "id": "spinnerbait",
+    "state": "ready"
+  },
+  {
+    "id": "spoon",
+    "state": "ready"
+  },
+  {
+    "id": "walleye",
+    "state": "ready"
+  },
+  {
+    "id": "white-bass",
+    "state": "ready"
+  },
+  {
+    "id": "white-crappie",
+    "state": "ready"
+  },
+  {
+    "id": "worm",
+    "state": "ready"
+  },
+  {
+    "id": "yellow-bullhead",
+    "state": "ready"
+  },
+  {
+    "id": "yellow-perch",
+    "state": "ready"
+  }
+]

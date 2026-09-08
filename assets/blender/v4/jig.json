@@ -1,0 +1,13 @@
+{
+  "asset": "jig",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "jig.blend",
+  "source_bytes": 195082,
+  "source_sha256": "e4d203508055d88f7ce77b3a69f5d33a5264460cd75bf8dba8b1290e6a8cb138",
+  "glb_bytes": 363072,
+  "glb_sha256": "a76d5c3d5f366b51f35d4669dd668900c5dc345fad211023d9d014cad94c59c5",
+  "primitives": 7,
+  "triangles": 15644,
+  "scene": "Fishdex v4 jig editable"
+}

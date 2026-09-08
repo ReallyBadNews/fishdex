@@ -1,0 +1,13 @@
+{
+  "asset": "brook-trout",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "brook-trout.blend",
+  "source_bytes": 3810599,
+  "source_sha256": "cfc7aa6e941097aa6b1d86000d9bcf1039bc48959e8d7b7f19b0978251f4a97a",
+  "glb_bytes": 2200636,
+  "glb_sha256": "7c4089e82dcbaa60a6a8fc891d2b0a4da0fe1423f774980b6232138b3b9b825f",
+  "primitives": 10,
+  "triangles": 69864,
+  "scene": "Fishdex v4 brook-trout editable"
+}

@@ -1,0 +1,13 @@
+{
+  "asset": "channel-catfish",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "channel-catfish.blend",
+  "source_bytes": 3002366,
+  "source_sha256": "123deedf9dc6b37d2eb7ae63715e254428b10e6f101e5dbab2b4eaca2624f070",
+  "glb_bytes": 2085932,
+  "glb_sha256": "ae8582920942186647c25aaf9c1f418838859e00f95a89e5381d3026895bc19d",
+  "primitives": 14,
+  "triangles": 72688,
+  "scene": "Fishdex v4 channel-catfish editable"
+}

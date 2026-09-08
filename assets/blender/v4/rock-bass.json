@@ -1,0 +1,13 @@
+{
+  "asset": "rock-bass",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "rock-bass.blend",
+  "source_bytes": 3706136,
+  "source_sha256": "0047cafc5f3644280d9f22adad8716ec4af0a578a0adfdfdcacfd13703e9b6c7",
+  "glb_bytes": 2296180,
+  "glb_sha256": "59e7113ed5fabc35a40df344f47102ad4fd7d7481960fb6a29fc5a76490ea26d",
+  "primitives": 10,
+  "triangles": 72000,
+  "scene": "Fishdex v4 rock-bass editable"
+}

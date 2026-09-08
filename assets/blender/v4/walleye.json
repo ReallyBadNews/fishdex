@@ -1,0 +1,13 @@
+{
+  "asset": "walleye",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "walleye.blend",
+  "source_bytes": 3587987,
+  "source_sha256": "c317fb6431a975498c1670b793f256b70cc6de95ca0fa6749c2f6621b4a484d7",
+  "glb_bytes": 2314956,
+  "glb_sha256": "1f453cfb5a65a2c499a9ba3ab38f2400c28ff2a410482387276bcb48dbc5bb93",
+  "primitives": 12,
+  "triangles": 72980,
+  "scene": "Fishdex v4 walleye editable"
+}

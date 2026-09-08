@@ -43,4 +43,6 @@ All earlier scenes are preserved in the original source library. Version 3 keeps
 
 ## Rebuild
 
-In Blender, execute build_fish.py, build_tackle.py, build_sportfish.py, and build_sporttackle.py into one namespace. For the current models, load build_realistic.py afterward and call build_realistic(id). Each asset saves its editable source in assets/blender/v3; keep the earlier master library intact. Run npm run models:bundle to update the embedded runtime assets.
+The current fourth pass refines head/shoulder profiles, jaw rims, gill contours, fin shapes and branching rays, species pigment patterns, and smooth scaleless catfish skin. Tackle adds conforming scale paint, smooth molded bodies, a recessed popper cup, clear diving lips, wound split rings, tapered hooks, ribbon skirts, and textured natural/artificial worms. Minnow now has paired pelvic fins and an anal fin. The exported meshes share UV names so joining retains the correct skin and fin mapping.
+
+Run `blender -b --factory-startup --python-exit-code 1 --python scripts/modeling/build_refined.py -- bass` from the checkout, substituting any catalog ID. A fresh Blender process per asset limits memory. Sources go to `assets/blender/v4`; the earlier archives stay intact. Run `npm run models:bundle` to update the embedded assets. [Review all 31 models](model-review/v4/index.html); [refinement notes and references](model-review/v4/README.md).
