@@ -1,0 +1,13 @@
+{
+  "asset": "bluegill",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "bluegill.blend",
+  "source_bytes": 3410624,
+  "source_sha256": "8a552eae5bb7339ced9ebb643c202c94531d67ff5693beb079808afc6d887f14",
+  "glb_bytes": 2188076,
+  "glb_sha256": "b1a3a4daf7544b1178015b680d64db35e353536db1a5c9fbd00da5e58c90e877",
+  "primitives": 10,
+  "triangles": 74156,
+  "scene": "Fishdex v4 bluegill editable"
+}

@@ -1,0 +1,13 @@
+{
+  "asset": "pumpkinseed",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "pumpkinseed.blend",
+  "source_bytes": 3794026,
+  "source_sha256": "12c8d8c2c5cf77078eeba3ade1441ee685e8c6c93b511c7b800fac028dd888db",
+  "glb_bytes": 2335584,
+  "glb_sha256": "e58269284b8bf7f9a937673f2362985beb6c12ba80f4105ed06c839eee105022",
+  "primitives": 12,
+  "triangles": 76588,
+  "scene": "Fishdex v4 pumpkinseed editable"
+}

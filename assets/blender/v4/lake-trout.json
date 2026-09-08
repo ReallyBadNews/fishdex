@@ -1,0 +1,13 @@
+{
+  "asset": "lake-trout",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "lake-trout.blend",
+  "source_bytes": 3635701,
+  "source_sha256": "d95b4ff68f7f0a7a72d52e949ca8178afa44afa7b8d17647ae8f5bfbdd844922",
+  "glb_bytes": 2131528,
+  "glb_sha256": "988f4d956f5a53b7417d4f64f50ffbc9059e49eef973e6a14b5f03e49f2d9008",
+  "primitives": 10,
+  "triangles": 69864,
+  "scene": "Fishdex v4 lake-trout editable"
+}

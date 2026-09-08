@@ -1,0 +1,13 @@
+{
+  "asset": "pike",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "pike.blend",
+  "source_bytes": 3564294,
+  "source_sha256": "7158be9c9b5443a54a861e96fb0a72d328e5ecc2fc741766c2e167952505ade4",
+  "glb_bytes": 2112964,
+  "glb_sha256": "2d6649cc99ba78f8ece4fe7c78ccaafc828abfc17e714739009b14d3e50a1432",
+  "primitives": 9,
+  "triangles": 69756,
+  "scene": "Fishdex v4 pike editable"
+}

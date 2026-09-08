@@ -1,0 +1,13 @@
+{
+  "asset": "spinnerbait",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "spinnerbait.blend",
+  "source_bytes": 266166,
+  "source_sha256": "35da3d4e42081f4867eaedf4ccf0aff0553893bb9f83e3a5ca3da392ea324cba",
+  "glb_bytes": 480348,
+  "glb_sha256": "f1a9cf292c54c2e7b90eff2f4c8579713320bfede7cb49b11ec92f6756fc3f13",
+  "primitives": 6,
+  "triangles": 19844,
+  "scene": "Fishdex v4 spinnerbait editable"
+}

@@ -1,0 +1,13 @@
+{
+  "asset": "muskie",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "muskie.blend",
+  "source_bytes": 3691684,
+  "source_sha256": "01ecdd05d59f5fea3b8498293a4687c7fa522aff615305b18fba7636100a73e0",
+  "glb_bytes": 2180592,
+  "glb_sha256": "7da7c7aab5fe8d36044e9901f2739556e274fe303f7b0fca24b64e19583c5ef6",
+  "primitives": 9,
+  "triangles": 69756,
+  "scene": "Fishdex v4 muskie editable"
+}

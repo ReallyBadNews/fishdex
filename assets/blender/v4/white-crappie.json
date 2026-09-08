@@ -1,0 +1,13 @@
+{
+  "asset": "white-crappie",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "white-crappie.blend",
+  "source_bytes": 3875212,
+  "source_sha256": "80b2018f8ceb10b93e53d705fc22375181816cac0960fe5b4f146d39ac313d07",
+  "glb_bytes": 2367316,
+  "glb_sha256": "77b990b7efc5293e7c9b2023cea66133522f1cc5c0dfda1826aabf7e4bac2f90",
+  "primitives": 10,
+  "triangles": 71040,
+  "scene": "Fishdex v4 white-crappie editable"
+}

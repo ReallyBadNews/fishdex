@@ -1,0 +1,13 @@
+{
+  "asset": "jerkbait",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "jerkbait.blend",
+  "source_bytes": 1056933,
+  "source_sha256": "a5fd045200c28f4ec5290ab125b9ed8bf1cd4507ae9025e7f6eb9de9f416327f",
+  "glb_bytes": 848148,
+  "glb_sha256": "05c57ec2bb5923eb69d6702728a6e0d83086159916b06e3491cca18afb02792e",
+  "primitives": 5,
+  "triangles": 33572,
+  "scene": "Fishdex v4 jerkbait editable"
+}

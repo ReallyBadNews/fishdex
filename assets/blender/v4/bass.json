@@ -1,0 +1,13 @@
+{
+  "asset": "bass",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "bass.blend",
+  "source_bytes": 3464075,
+  "source_sha256": "5200bfc4cfb2833e1c92e5eb26bb83e2312f1988dadad660bb4fc311840fe075",
+  "glb_bytes": 2168076,
+  "glb_sha256": "4cd0e562f9becba56fe1b4970d44a8741aeaca0e339dbe4b5e2f677294508169",
+  "primitives": 10,
+  "triangles": 71724,
+  "scene": "Fishdex v4 bass editable"
+}

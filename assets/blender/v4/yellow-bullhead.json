@@ -1,0 +1,13 @@
+{
+  "asset": "yellow-bullhead",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "yellow-bullhead.blend",
+  "source_bytes": 2925394,
+  "source_sha256": "ba6b1306c08531065fa3e97d74db85ba1dbf18eab9446e8eac5990b8323fa2df",
+  "glb_bytes": 2081548,
+  "glb_sha256": "5c66d5fb2d828f0e05d232a1124cbfcbdfee4b26400e463d8b9a8264db23101c",
+  "primitives": 14,
+  "triangles": 72688,
+  "scene": "Fishdex v4 yellow-bullhead editable"
+}

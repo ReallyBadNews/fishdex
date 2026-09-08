@@ -1,0 +1,13 @@
+{
+  "asset": "spoon",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "spoon.blend",
+  "source_bytes": 140478,
+  "source_sha256": "ee7437b551c768b9fb38191f77cad0a29ace6d58a5656a1ecf7c4ac2d8838641",
+  "glb_bytes": 199608,
+  "glb_sha256": "1c1a99bf55f2b0f645c89a1fd7fcf09c4a45c15f57619085cc29085856e52ff5",
+  "primitives": 2,
+  "triangles": 7312,
+  "scene": "Fishdex v4 spoon editable"
+}

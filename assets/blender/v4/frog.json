@@ -1,0 +1,13 @@
+{
+  "asset": "frog",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "frog.blend",
+  "source_bytes": 180963,
+  "source_sha256": "0a3b0dd203c27909c4bce92b885567edf93b2cfe72c37ab88bd12e565b73272c",
+  "glb_bytes": 638164,
+  "glb_sha256": "5f8b013a49b0b7976da2fa1187fc13148e1a30b5a2b726769446c80b7113843a",
+  "primitives": 5,
+  "triangles": 26424,
+  "scene": "Fishdex v4 frog editable"
+}

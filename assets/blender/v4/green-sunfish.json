@@ -1,0 +1,13 @@
+{
+  "asset": "green-sunfish",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "green-sunfish.blend",
+  "source_bytes": 3664326,
+  "source_sha256": "e8a7d89353f63e2181b30f096596bf6d6accff93550bc69885917082df033287",
+  "glb_bytes": 2262060,
+  "glb_sha256": "c4e175f79021e03a7e5de19632918d7f51255f658e4d67b3d239e7f45b14f982",
+  "primitives": 10,
+  "triangles": 74156,
+  "scene": "Fishdex v4 green-sunfish editable"
+}

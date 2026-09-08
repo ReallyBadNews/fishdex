@@ -1,0 +1,13 @@
+{
+  "asset": "worm",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "worm.blend",
+  "source_bytes": 426895,
+  "source_sha256": "03974dc00eccd2a93f09dfcb73ebbc2c9484da6e3f9935183eed8d424a42a2b6",
+  "glb_bytes": 647424,
+  "glb_sha256": "9e911542b1a7585f45502aa9eb9a88bbad92a77a42bcfe98d143238feed25306",
+  "primitives": 2,
+  "triangles": 25752,
+  "scene": "Fishdex v4 worm editable"
+}

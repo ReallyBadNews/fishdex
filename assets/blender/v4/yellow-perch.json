@@ -1,0 +1,13 @@
+{
+  "asset": "yellow-perch",
+  "revision": 4,
+  "blender": "5.2.1 LTS",
+  "source": "yellow-perch.blend",
+  "source_bytes": 3827973,
+  "source_sha256": "15c8f6c62ff87de5f7219e6b174232de6514936a20cf066905c9221c1e7d87e7",
+  "glb_bytes": 2380804,
+  "glb_sha256": "8e06015de0134af3249667ac1c955c39b1530da104176bec4e8d2b59efb2f17f",
+  "primitives": 10,
+  "triangles": 72272,
+  "scene": "Fishdex v4 yellow-perch editable"
+}
